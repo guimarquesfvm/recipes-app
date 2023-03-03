@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import MealsContext from './MealsContext';
 
 function MealsProvider({ children }) {
+  const prop = '';
   return (
-    <MealsContext.Provider>
+    <MealsContext.Provider value={ prop }>
       { children }
     </MealsContext.Provider>
   );
