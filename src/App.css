@@ -66,3 +66,11 @@
     transform: rotate(-10deg);
   }
 }
+
+.caroussel-container {
+  width: 300px;
+  text-align: center;
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}

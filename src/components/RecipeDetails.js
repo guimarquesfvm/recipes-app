@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import recipeDetailsAPI from '../helpers/recipeDetailsAPI';
 import MealRecipeCard from './MealRecipeCard';
 import DrinkRecipeCard from './DrinkRecipeCard';
+import recomendationsAPI from '../helpers/recomendationsAPI';
+import DrinkRecomendations from './DrinkRecomendations';
+import MealRecomendations from './MealRecomendations';
 
 function RecipeDetails(props) {
   const { match: { url, params: { id } } } = props;
@@ -10,9 +13,12 @@ function RecipeDetails(props) {
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [measurements, setMeasurements] = useState([]);
-
+  const [recomendations, setRecomendations] = useState([]);
+  const SIX = 6;
   useEffect(() => {
     if (url.includes('meals')) {
+      recomendationsAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+        .then((data) => setRecomendations(data.drinks.slice(0, SIX)));
       recipeDetailsAPI(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
         .then((data) => {
           setRecipe(data.meals[0]);
@@ -28,6 +34,8 @@ function RecipeDetails(props) {
           );
         });
     } else if (url.includes('drinks')) {
+      recomendationsAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+        .then((data) => setRecomendations(data.meals.slice(0, SIX)));
       recipeDetailsAPI(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
         .then((data) => {
           setRecipe(data.drinks[0]);
@@ -45,9 +53,10 @@ function RecipeDetails(props) {
     }
   }, [url, id]);
 
-  useEffect(() => console.log(recipe), [recipe]);
-  useEffect(() => console.log(ingredients), [ingredients]);
-  useEffect(() => console.log(measurements), [measurements]);
+  // useEffect(() => console.log(recipe), [recipe]);
+  // useEffect(() => console.log(ingredients), [ingredients]);
+  // useEffect(() => console.log(measurements), [measurements]);
+  // useEffect(() => console.log(recomendations), [recomendations]);
 
   return (
     <div>
@@ -56,17 +65,23 @@ function RecipeDetails(props) {
       </h1>
       <div>
         {url.includes('meals') ? (
-          <MealRecipeCard
-            recipe={ recipe }
-            ingredients={ ingredients }
-            measurements={ measurements }
-          />
+          <>
+            <MealRecipeCard
+              recipe={ recipe }
+              ingredients={ ingredients }
+              measurements={ measurements }
+            />
+            <DrinkRecomendations recomendations={ recomendations } />
+          </>
         ) : (
-          <DrinkRecipeCard
-            recipe={ recipe }
-            ingredients={ ingredients }
-            measurements={ measurements }
-          />
+          <>
+            <DrinkRecipeCard
+              recipe={ recipe }
+              ingredients={ ingredients }
+              measurements={ measurements }
+            />
+            <MealRecomendations recomendations={ recomendations } />
+          </>
         )}
       </div>
     </div>
