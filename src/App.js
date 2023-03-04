@@ -5,11 +5,13 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MealsProvider from './context/MealsProvider';
 import DrinksProvider from './context/DrinksProvider';
+import CardReceitas from './components/CardReceitas';
 
 function App() {
   return (
     <MealsProvider>
-      <DrinksProvider>
+      {/* <DrinksProvider> */}
+        <CardReceitas />
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route path="/meals" />
@@ -22,7 +24,7 @@ function App() {
           <Route path="/done-recipes" />
           <Route path="/favorite-recipes" />
         </Switch>
-      </DrinksProvider>
+      {/* </DrinksProvider> */}
     </MealsProvider>
   );
 }
