@@ -1,5 +1,5 @@
 let URL = 'themealdb';
-
+// endPoint inicial
 export const mealsAPI = async (page) => {
   if (page === 'meals') { URL = 'themealdb'; }
   if (page === 'drinks') { URL = 'thecocktaildb'; }
@@ -9,7 +9,7 @@ export const mealsAPI = async (page) => {
   // console.log(data);
   return data[Object.keys(data)[0]];
 };
-
+// endPoint do filtro
 export const filterApi = async (endPoint, page) => {
   if (page === 'meals') { URL = 'themealdb'; }
   if (page === 'drinks') { URL = 'thecocktaildb'; }
@@ -18,7 +18,7 @@ export const filterApi = async (endPoint, page) => {
   // console.log(data);
   return data[Object.keys(data)[0]];
 };
-
+// endpoint das categorias
 export const categoryApi = async (page) => {
   if (page === 'meals') { URL = 'themealdb'; }
   if (page === 'drinks') { URL = 'thecocktaildb'; }
