@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import MealsContext from '../context/MealsContext';
 import Loading from './Loading';
 
@@ -90,7 +91,7 @@ export default function CardReceitas() {
 
       </label>
       {loading ? <Loading /> : api.map((receita, index) => (
-        <div key={ receita[`id${pageName}`] }>
+        <Link to={ receita[`id${pageName}`] } key={ receita[`id${pageName}`] }>
           <img
             data-testid={ `${index}-card-img` }
             src={ receita[`str${pageName}Thumb`] }
@@ -99,10 +100,10 @@ export default function CardReceitas() {
           <span
             data-testid={ `${index}-card-name` }
           >
-            {receita.strMeal}
+            {receita[`str${pageName}`]}
 
           </span>
-        </div>
+        </Link>
       ))}
     </div>
 
