@@ -5,14 +5,16 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Meals from './pages/Meals';
 import RecipesProvider from './context/RecipesProvider';
+// import Footer from './components/Footer';
+import Drinks from './pages/Drinks';
 
 function App() {
   return (
     <RecipesProvider>
       <Switch>
         <Route exact path="/" component={ Login } />
-        <Route path="/meals" component={ Meals }/>
-        <Route path="/drinks" />
+        <Route path="/meals" component={ Meals } />
+        <Route path="/drinks" component={ Drinks } />
         <Route path="/meals/:id-da-receita" />
         <Route path="/drinks/:id-da-receita" />
         <Route path="/drinks/:id-da-receita/in-progress" />
