@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MealsProvider from './context/MealsProvider';
 import DrinksProvider from './context/DrinksProvider';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/done-recipes" />
           <Route path="/favorite-recipes" />
         </Switch>
+        <SearchBar />
       </DrinksProvider>
     </MealsProvider>
   );
