@@ -22,7 +22,7 @@ function Footer() {
         data-testid="drinks-bottom-btn"
         onClick={ () => {
           setLoading(true);
-          // setPage('drinks');
+          setPage('drinks');
           history.push('/Drinks');
         } }
       >
