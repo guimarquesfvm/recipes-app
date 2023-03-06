@@ -74,3 +74,8 @@
   overflow-x: auto;
   gap: 10px;
 }
+
+.start-recipe-btn {
+  position: fixed;
+  bottom: 0;
+}

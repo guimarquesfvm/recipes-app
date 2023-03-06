@@ -6,6 +6,7 @@ import DrinkRecipeCard from './DrinkRecipeCard';
 import recomendationsAPI from '../helpers/recomendationsAPI';
 import DrinkRecomendations from './DrinkRecomendations';
 import MealRecomendations from './MealRecomendations';
+import StartRecipeButton from './StartRecipeButton';
 
 function RecipeDetails(props) {
   const { match: { url, params: { id } } } = props;
@@ -72,6 +73,7 @@ function RecipeDetails(props) {
               measurements={ measurements }
             />
             <DrinkRecomendations recomendations={ recomendations } />
+            <StartRecipeButton recipeID={ recipe.idMeal } category="meals" />
           </>
         ) : (
           <>
@@ -81,6 +83,7 @@ function RecipeDetails(props) {
               measurements={ measurements }
             />
             <MealRecomendations recomendations={ recomendations } />
+            <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
           </>
         )}
       </div>

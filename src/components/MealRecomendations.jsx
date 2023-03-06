@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function MealRecomendations({ recomendations }) {
-  useEffect(() => console.log(recomendations), [recomendations]);
   return (
     <ul className="caroussel-container">
       {
