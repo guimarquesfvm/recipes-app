@@ -1,8 +1,12 @@
 import React from 'react';
 import CardReceitas from '../components/CardReceitas';
+import Header from '../components/Header';
 
 export default function Meals() {
   return (
-    <CardReceitas />
+    <div>
+      <Header title="teste" />
+      <CardReceitas />
+    </div>
   );
 }
