@@ -24,6 +24,8 @@ export default function SearchBar() {
       console.log(api.meals);
       if (api.meals.length === 1) {
         history.push(`/meals/${api.meals[0].idMeal}`);
+      } if (api.meals.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.meals.slice(0, 12));
     } if (searchRadio === 'name' && window.location.pathname === '/meals') {
@@ -33,6 +35,8 @@ export default function SearchBar() {
       console.log(api.meals);
       if (api.meals.length === 1) {
         history.push(`/meals/${api.meals[0].idMeal}`);
+      } if (api.meals.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.meals.slice(0, 12));
     } if (searchRadio === first && window.location.pathname === '/meals') {
@@ -42,6 +46,8 @@ export default function SearchBar() {
       console.log(api.meals);
       if (api.meals.length === 1) {
         history.push(`/meals/${api.meals[0].idMeal}`);
+      } if (api.meals.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.meals.slice(0, 12));
     } if (searchRadio === 'ingredient' && window.location.pathname === '/drinks') {
@@ -51,6 +57,8 @@ export default function SearchBar() {
       console.log(api.drinks);
       if (api.drinks.length === 1) {
         history.push(`/drinks/${api.drinks[0].idDrink}`);
+      } if (api.drinks.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.drinks.slice(0, 12));
     } if (searchRadio === 'name' && window.location.pathname === '/drinks') {
@@ -60,6 +68,8 @@ export default function SearchBar() {
       console.log(api.drinks);
       if (api.drinks.length === 1) {
         history.push(`/drinks/${api.drinks[0].idDrink}`);
+      } if (api.drinks.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.drinks.slice(0, 12));
     } if (searchRadio === first && window.location.pathname === '/drinks') {
@@ -69,6 +79,8 @@ export default function SearchBar() {
       console.log(api.drinks);
       if (api.drinks.length === 1) {
         history.push(`/drinks/${api.drinks[0].idDrink}`);
+      } if (api.drinks.length === 0) {
+        global.alert("Sorry, we haven't found any recipes for these filters.");
       }
       setApi(api.drinks.slice(0, 12));
     }
