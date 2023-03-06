@@ -79,3 +79,6 @@
   position: fixed;
   bottom: 0;
 }
+body {
+  padding-bottom: 30px;
+}

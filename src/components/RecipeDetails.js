@@ -7,6 +7,8 @@ import recomendationsAPI from '../helpers/recomendationsAPI';
 import DrinkRecomendations from './DrinkRecomendations';
 import MealRecomendations from './MealRecomendations';
 import StartRecipeButton from './StartRecipeButton';
+import ShareRecipeButton from './ShareRecipeButton';
+import FavoriteRecipeButton from './FavoriteRecipeButton';
 
 function RecipeDetails(props) {
   const { match: { url, params: { id } } } = props;
@@ -54,7 +56,7 @@ function RecipeDetails(props) {
     }
   }, [url, id]);
 
-  // useEffect(() => console.log(recipe), [recipe]);
+  // useEffect(() => console.log(recipe.strCategory), [recipe]);
   // useEffect(() => console.log(ingredients), [ingredients]);
   // useEffect(() => console.log(measurements), [measurements]);
   // useEffect(() => console.log(recomendations), [recomendations]);
@@ -74,6 +76,8 @@ function RecipeDetails(props) {
             />
             <DrinkRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idMeal } category="meals" />
+            <FavoriteRecipeButton recipe={ recipe } category="meal" />
+            <ShareRecipeButton />
           </>
         ) : (
           <>
@@ -84,6 +88,8 @@ function RecipeDetails(props) {
             />
             <MealRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
+            <FavoriteRecipeButton recipe={ recipe } category="drink" />
+            <ShareRecipeButton />
           </>
         )}
       </div>
