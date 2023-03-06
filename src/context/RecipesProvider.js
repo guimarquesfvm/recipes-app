@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useMemo } from 'react';
 import { filterApi, mealsAPI, categoryApi } from '../helpers/mealsAPI';
-import MealsContext from './MealsContext';
-import useHookMeals from './useHookMeals';
+import RecipesContext from './RecipesContext';
+import useHookRecipes from './useHookRecipes';
 
-function MealsProvider({ children }) {
+function RecipesProvider({ children }) {
   const {
     category,
     setCategory,
@@ -17,7 +17,7 @@ function MealsProvider({ children }) {
     toggleButton,
     categorysApi,
     setCategorysApi,
-  } = useHookMeals();
+  } = useHookRecipes();
 
   // funçao que controla a requisiçao da Api
   const requestApi = async () => {
@@ -51,16 +51,16 @@ function MealsProvider({ children }) {
     setApi, setCategory, setCategorysApi, setLoading, setPage, toggleButton]);
 
   return (
-    <MealsContext.Provider
+    <RecipesContext.Provider
       value={ hookMeals }
     >
       { children }
-    </MealsContext.Provider>
+    </RecipesContext.Provider>
   );
 }
 
-MealsProvider.propTypes = {
+RecipesProvider.propTypes = {
   children: PropTypes.element,
 }.isRequired;
 
-export default MealsProvider;
+export default RecipesProvider;

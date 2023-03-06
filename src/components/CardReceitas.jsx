@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MealsContext from '../context/MealsContext';
+import RecipesContext from '../context/RecipesContext';
 import Loading from './Loading';
 
 // const receitas = {
@@ -70,7 +70,7 @@ import Loading from './Loading';
 
 const limiter = 5;
 export default function CardReceitas() {
-  const { toggleButton, api, loading, page, categorysApi } = useContext(MealsContext);
+  const { toggleButton, api, loading, page, categorysApi } = useContext(RecipesContext);
   const pageName = page === 'meals' ? 'Meal' : 'Drink';
   return (
 
