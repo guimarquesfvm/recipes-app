@@ -27,3 +27,9 @@ export const categoryApi = async (page) => {
   console.log(data);
   return data[Object.keys(data)[0]];
 };
+
+export const searchApi = async (link) => {
+  const response = await fetch(link);
+  const data = await response.json();
+  return data;
+};

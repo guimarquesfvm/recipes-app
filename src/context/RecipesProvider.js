@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useMemo } from 'react';
 import { filterApi, mealsAPI, categoryApi } from '../helpers/mealsAPI';
-import RecipesContext from './RecipesContext';
 import useHookRecipes from './useHookRecipes';
+import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
   const {

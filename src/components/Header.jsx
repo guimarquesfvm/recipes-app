@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header({ title }) {
   const [showBar, setShowBar] = useState(false);
@@ -15,7 +17,7 @@ function Header({ title }) {
           <img src={ searchIcon } alt="Search Icon" />
         </button>
         <button
-          data-testid="search-top-btn"
+          data-testid="profile-top-btn"
           onClick={ () => { history.push('/profile'); } }
         >
           <img src={ profileIcon } alt="Profile Icon" />
@@ -25,7 +27,8 @@ function Header({ title }) {
         <h3>{ title }</h3>
       </div>
       {
-        showBar ? <input type="text" data-testid="search-input" /> : null
+        showBar
+          ? <SearchBar /> : null
       }
     </header>
   );
