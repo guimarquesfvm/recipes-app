@@ -17,25 +17,29 @@ function Footer() {
       data-testid="footer"
     >
       <button
-        type="button"
+        src={ drinkIcon }
+        alt="Juice"
+        type="image"
         id="drink-button"
         data-testid="drinks-bottom-btn"
         onClick={ () => {
           setLoading(true);
-          // setPage('drinks');
-          history.push('/Drinks');
+          setPage('drinks');
+          history.push('/drinks');
         } }
       >
         <img src={ drinkIcon } alt="Juice" />
       </button>
       <button
+        src={ mealIcon }
+        alt="Meal"
         type="button"
         id="meal-button"
         data-testid="meals-bottom-btn"
         onClick={ () => {
           setLoading(true);
           setPage('meals');
-          history.push('/Meals');
+          history.push('/meals');
         } }
       >
         <img src={ mealIcon } alt="Meal" />

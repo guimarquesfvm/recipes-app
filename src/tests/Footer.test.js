@@ -14,18 +14,18 @@ describe('Testes do componente Footer.js', () => {
   });
   it('Testa se ao cliclar no ícone de drink, é redirecionado a lista.', () => {
     const { history } = renderWithRouter(<Footer />);
-    const drinksbutton = screen.getByTestId('drinks-bottom-btn', { name: /listdrinks/i });
+    const drinksbutton = screen.getByTestId('drinks-bottom-btn', { name: /drinks/i });
     userEvent.click(drinksbutton);
     expect(drinksbutton).toBeInTheDocument();
     const { location: { pathname } } = history;
-    expect(pathname).toBe('/listdrinks');
+    expect(pathname).toBe('/drinks');
   });
   it('Testa se ao clicar no ícone de meals, é redirecionado a lista.', () => {
     const { history } = renderWithRouter(<Footer />);
-    const mealsbutton = screen.getByTestId('meals-bottom-btn', { name: /listmeals/i });
+    const mealsbutton = screen.getByTestId('meals-bottom-btn', { name: /meals/i });
     userEvent.click(mealsbutton);
     expect(mealsbutton).toBeInTheDocument();
     const { location: { pathname } } = history;
-    expect(pathname).toBe('/listmeals');
+    expect(pathname).toBe('/meals');
   });
 });
