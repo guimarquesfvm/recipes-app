@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
@@ -7,6 +6,7 @@ import Meals from './pages/Meals';
 import RecipesProvider from './context/RecipesProvider';
 import Drinks from './pages/Drinks';
 import Profile from './pages/Profile';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route path="/drinks/:id-da-receita/in-progress" />
         <Route path="/meals/:id-da-receita/in-progress" />
         <Route path="/profile" component={ Profile } />
-        <Route path="/done-recipes" />
+        <Route path="/done-recipes" component={ DoneRecipes } />
         <Route path="/favorite-recipes" />
       </Switch>
     </RecipesProvider>
