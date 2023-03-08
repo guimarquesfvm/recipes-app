@@ -72,6 +72,7 @@ const limiter = 5;
 export default function CardReceitas() {
   const { toggleButton, api, loading, page, categorysApi } = useContext(RecipesContext);
   const pageName = page === 'meals' ? 'Meal' : 'Drink';
+  console.log(pageName);
   return (
 
     <div>

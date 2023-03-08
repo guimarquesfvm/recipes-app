@@ -32,7 +32,7 @@ function RecipesProvider({ children }) {
 
   useEffect(() => {
     requestApi();
-  }, [category]);
+  }, [category, page]);
 
   const hookMeals = useMemo(() => ({
     category,
