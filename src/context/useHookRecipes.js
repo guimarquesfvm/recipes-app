@@ -10,7 +10,7 @@ function useHookRecipes() {
   // controla o loding
   const [loading, setLoading] = useState(true);
   // page serve para constrolar em qual pagina esta
-  const [page, setPage] = useState('drinks');
+  const [page, setPage] = useState('meals');
 
   // botao para selecionar a categoria
   const toggleButton = ({ target }) => {

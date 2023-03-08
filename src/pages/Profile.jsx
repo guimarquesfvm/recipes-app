@@ -23,7 +23,7 @@ export default function Profile() {
         data-testid="profile-favorite-btn"
         onClick={ () => history.push('/favorite-recipes') }
       >
-        Favorites Recipes
+        Favorite Recipes
 
       </button>
       <button
