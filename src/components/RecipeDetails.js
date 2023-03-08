@@ -18,6 +18,7 @@ function RecipeDetails(props) {
   const [measurements, setMeasurements] = useState([]);
   const [recomendations, setRecomendations] = useState([]);
   const SIX = 6;
+
   useEffect(() => {
     if (url.includes('meals')) {
       recomendationsAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
@@ -56,7 +57,7 @@ function RecipeDetails(props) {
     }
   }, [url, id]);
 
-  // useEffect(() => console.log(recipe.strCategory), [recipe]);
+  useEffect(() => console.log(recipe), [recipe]);
   // useEffect(() => console.log(ingredients), [ingredients]);
   // useEffect(() => console.log(measurements), [measurements]);
   // useEffect(() => console.log(recomendations), [recomendations]);
