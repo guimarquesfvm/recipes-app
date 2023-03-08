@@ -4,144 +4,90 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import DoneRecipes from '../pages/DoneRecipes';
 
-const setLocalStorage = (key, data) => {
-  window.localStorage.setItem(key, JSON.stringify(data));
-};
-
 describe('Testa as funcionalidadea da página Done Recipes', () => {
+  const SpicyArrabiataPenne = 'Spicy Arrabiata Penne';
+
   const recipes = [
     {
       alcoholicOrNot: '',
-      nationality: 'Turkish',
-      category: 'Side',
-      doneDate: '2023-03-07T18:38:29.862Z',
-      image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
-      name: 'Corba',
-      tags: [
-        'Soup',
-      ],
+      category: 'Vegetarian',
+      doneDate: '23/06/2020',
+      id: '52771',
+      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+      name: SpicyArrabiataPenne,
+      nationality: 'Italian',
+      tags: ['Pasta', 'Curry'],
       type: 'meal',
-      id: '52977',
-    },
-    {
-      alcoholicOrNot: '',
-      nationality: 'Japanese',
-      category: 'Seafood',
-      doneDate: '2023-03-07T18:39:08.611Z',
-      image: 'https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg',
-      name: 'Sushi',
-      tags: [],
-      type: 'meal',
-      id: '53065',
-
     },
     {
       alcoholicOrNot: 'Alcoholic',
-      nationality: '',
       category: 'Cocktail',
-      doneDate: '2023-03-07T18:39:42.057Z',
-      image: 'https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg',
-      name: 'A1',
+      doneDate: '23/06/2020',
+      id: '178319',
+      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+      name: 'Aquamarine',
+      nationality: '',
       tags: [],
       type: 'drink',
-      id: '17222',
     },
   ];
 
-  const buttonAllId = 'filter-by-all-btn';
-  const buttonMealsId = 'filter-by-meal-btn';
-  const buttonDrinksId = 'filter-by-drink-btn';
-  setLocalStorage('doneRecipes', recipes);
+  const json = JSON.stringify(recipes);
 
-  it('Testa se há os botões de filtros em Tela', () => {
+  window.localStorage.setItem('doneRecipes', json);
+
+  it('Testa se os botões de filtros são renderizados', () => {
     renderWithRouter(<DoneRecipes />);
-    const buttonAll = screen.getByTestId(buttonAllId);
-    const buttonMeals = screen.getByTestId(buttonMealsId);
-    const buttonDrinks = screen.getByTestId(buttonDrinksId);
-    expect(buttonAll).toBeInTheDocument();
+    const buttonMeals = screen.getByTestId('filter-by-meal-btn');
+    const buttonDrinks = screen.getByTestId('filter-by-drink-btn');
+    const buttonAll = screen.getByTestId('filter-by-all-btn');
     expect(buttonMeals).toBeInTheDocument();
     expect(buttonDrinks).toBeInTheDocument();
+    expect(buttonAll).toBeInTheDocument();
   });
 
-  it('Testa se as as receitas salvas no local storage são renderizadas corretamente.', () => {
+  it('Testa se os botões filtram corretamente', () => {
     renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('Corba');
-    const recipe2 = screen.getByText('Sushi');
-    const recipe3 = screen.getByText('A1');
-    expect(recipe1).toBeInTheDocument();
-    expect(recipe2).toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
-  });
-
-  it('Testa o botão de filtro Meals.', () => {
-    renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('Corba');
-    const recipe2 = screen.getByText('Sushi');
-    const recipe3 = screen.getByText('A1');
-    expect(recipe1).toBeInTheDocument();
-    expect(recipe2).toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
-    const buttonMeals = screen.getByTestId(buttonMealsId);
+    const buttonMeals = screen.getByTestId('filter-by-meal-btn');
+    const buttonDrinks = screen.getByTestId('filter-by-drink-btn');
+    const buttonAll = screen.getByTestId('filter-by-all-btn');
+    const recipe1 = screen.getByText(SpicyArrabiataPenne);
+    const recipe2 = screen.getByText('Aquamarine');
     userEvent.click(buttonMeals);
     expect(recipe1).toBeInTheDocument();
-    expect(recipe2).toBeInTheDocument();
-    expect(recipe3).not.toBeInTheDocument();
-  });
-
-  it('Testa o botão de filtro Drinks.', () => {
-    renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('Corba');
-    const recipe2 = screen.getByText('Sushi');
-    const recipe3 = screen.getByText('A1');
-    expect(recipe1).toBeInTheDocument();
-    expect(recipe2).toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
-    const buttonDrinks = screen.getByTestId(buttonDrinksId);
+    expect(recipe2).not.toBeInTheDocument();
     userEvent.click(buttonDrinks);
     expect(recipe1).not.toBeInTheDocument();
-    expect(recipe2).not.toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
-  });
-
-  it('Testa o botão de filtro All.', () => {
-    renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('Corba');
-    const recipe2 = screen.getByText('Sushi');
-    const recipe3 = screen.getByText('A1');
-    expect(recipe1).toBeInTheDocument();
     expect(recipe2).toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
-    const buttonAll = screen.getByTestId(buttonAllId);
     userEvent.click(buttonAll);
     expect(recipe1).toBeInTheDocument();
     expect(recipe2).toBeInTheDocument();
-    expect(recipe3).toBeInTheDocument();
   });
 
-  it('Testa botão de compartilhar.', async () => {
+  it('Testa botão compartilhar', async () => {
     renderWithRouter(<DoneRecipes />);
     const buttonShare = screen.getByTestId('0-horizontal-share-btn');
     userEvent.click(buttonShare);
-    const recipe1 = await screen.findByText('Link copied!');
+    const menssage = await screen.findByText('Link copied!');
+    expect(menssage).toBeInTheDocument();
+  });
+
+  it('Testa se não tiver receitas concluidas aparece a mensagem: You have no completed recipes.', () => {
+    window.localStorage.setItem('doneRecipes', null);
+    renderWithRouter(<DoneRecipes />);
+    const recipe1 = screen.getByText('You have no completed recipes.');
     expect(recipe1).toBeInTheDocument();
   });
 
   it('Testa se é possível acessar a página de detalhes de uma receita salva.', () => {
     renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('Corba');
+    const recipe1 = screen.getByText(SpicyArrabiataPenne);
     expect(recipe1).toBeInTheDocument();
     const recipeLink = screen.getByTestId('0-horizontal-name');
     userEvent.click(recipeLink);
     const recipeTitle = screen.getByTestId('recipe-title');
     expect(recipeTitle).toBeInTheDocument();
-    const recipeImage = screen.getByAltText('Corba');
+    const recipeImage = screen.getByAltText(SpicyArrabiataPenne);
     expect(recipeImage).toBeInTheDocument();
-  });
-
-  it('Testa se não tiver receitas concluidas aparece a mensagem: You have no completed recipes.', () => {
-    setLocalStorage('doneRecipes', null);
-    renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText('You have no completed recipes.');
-    expect(recipe1).toBeInTheDocument();
   });
 });

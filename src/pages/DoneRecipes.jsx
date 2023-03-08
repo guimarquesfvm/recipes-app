@@ -7,6 +7,7 @@ export default function DoneRecipes() {
   const [filterClick, setFilterClick] = useState('All');
 
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  console.log(doneRecipes);
 
   const onClickShare = (element) => {
     const copyText = `${window.location.origin}/${element.type}s/${element.id}`;
