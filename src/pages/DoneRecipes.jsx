@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import share from '../images/shareIcon.svg';
 
 export default function DoneRecipes() {
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState('');
   const [filterClick, setFilterClick] = useState('All');
 
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 
-  function onClickShare(element) {
+  const onClickShare = (element) => {
     const copyText = `${window.location.origin}/${element.type}s/${element.id}`;
 
     navigator.clipboard.writeText(copyText);
 
     // console.log(copyText);
 
-    return setLinkCopied(true);
-  }
+    setLinkCopied('Link copied!');
+  };
 
   const filter = () => {
     if (filterClick === 'All') {
@@ -75,15 +75,9 @@ export default function DoneRecipes() {
 
   const start = () => {
     if (doneRecipes === null) {
-      return;
+      return <p>You have no completed recipes.</p>;
     } if (doneRecipes !== null) {
       return doneRecipesMap();
-    }
-  };
-
-  const linkCopiedFunc = () => {
-    if (linkCopied === true) {
-      return <p>Link copied!</p>;
     }
   };
 
@@ -111,7 +105,7 @@ export default function DoneRecipes() {
         >
           All
         </button>
-        { linkCopiedFunc() }
+        <p>{ linkCopied }</p>
         { start() }
       </form>
     </div>
