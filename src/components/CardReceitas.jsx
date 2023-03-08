@@ -72,6 +72,7 @@ const limiter = 5;
 export default function CardReceitas() {
   const { toggleButton, api, loading, page, categorysApi } = useContext(RecipesContext);
   const pageName = page === 'meals' ? 'Meal' : 'Drink';
+  console.log(pageName);
   return (
 
     <div>
@@ -91,7 +92,11 @@ export default function CardReceitas() {
 
       </label>
       {loading ? <Loading /> : api.map((receita, index) => (
-        <Link to={ receita[`id${pageName}`] } key={ receita[`id${pageName}`] }>
+        <Link
+          to={ receita[`id${pageName}`] }
+          key={ receita[`id${pageName}`] }
+          data-testid={ `${index}-recipe-card` }
+        >
           <img
             data-testid={ `${index}-card-img` }
             src={ receita[`str${pageName}Thumb`] }
