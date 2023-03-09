@@ -93,7 +93,7 @@ export default function CardReceitas() {
       </label>
       {loading ? <Loading /> : api.map((receita, index) => (
         <Link
-          to={ receita[`id${pageName}`] }
+          to={ `/${page}/${receita[`id${pageName}`]}` }
           key={ receita[`id${pageName}`] }
           data-testid={ `${index}-recipe-card` }
         >
