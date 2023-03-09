@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import share from '../images/shareIcon.svg';
+import RecipesContext from '../context/RecipesContext';
+import blackHeart from '../images/blackHeartIcon.svg';
+import ShareRecipeButton from '../components/ShareRecipeButton';
 
 export default function DoneRecipes() {
-  const [linkCopied, setLinkCopied] = useState(false);
   const [filterClick, setFilterClick] = useState('All');
-
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-
-  function onClickShare(element) {
-    const copyText = `${window.location.origin}/${element.type}s/${element.id}`;
-
-    navigator.clipboard.writeText(copyText);
-
-    // console.log(copyText);
-
-    return setLinkCopied(true);
-  }
+  const getfavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const { setFavoriteRecipes } = useContext(RecipesContext);
 
   const filter = () => {
     if (filterClick === 'All') {
-      return doneRecipes;
+      return getfavoriteRecipes;
     } if (filterClick === 'Meals') {
-      return doneRecipes.filter((element) => element.type === 'meal');
+      return getfavoriteRecipes.filter((element) => element.type === 'meal');
     } if (filterClick === 'Drinks') {
-      return doneRecipes.filter((element) => element.type === 'drink');
+      return getfavoriteRecipes.filter((element) => element.type === 'drink');
     }
   };
 
-  const doneRecipesMap = () => {
+  const handleRomoveFavorite = ({ target }) => {
+    const favRemover = getfavoriteRecipes.filter(((element) => element.id
+      !== target.name));
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favRemover));
+    setFavoriteRecipes(favRemover);
+  };
+  const favoriteRecipesMap = () => {
     const array = filter();
-    const cards = array.map((e, i) => (
+    return array.map((e, i) => (
       <div key={ i }>
         <Link
           to={ `/${e.type}s/${e.id}` }
@@ -41,9 +38,6 @@ export default function DoneRecipes() {
             data-testid={ `${i}-horizontal-image` }
             width="300px"
           />
-          <button>
-            {/* {favorite ? <img src="blackHeart" alt="blackheart" /> : <img src="whiteheart" alt="whiteheart" />} */}
-          </button>
         </Link>
         <p data-testid={ `${i}-horizontal-top-text` }>
           { `${e.nationality} - ${e.category}` }
@@ -55,37 +49,28 @@ export default function DoneRecipes() {
           { e.name }
         </Link>
         <p data-testid={ `${i}-horizontal-top-text` }>{ e.alcoholicOrNot }</p>
-        <button
-          type="button"
-          data-testid={ `${i}-horizontal-share-btn` }
-          src={ share }
-          onClick={ () => onClickShare(e) }
-        >
-          <img src={ share } alt="Share button" />
-        </button>
-        { e.tags.map((elem, ind) => (
-          <div
-            key={ ind }
-            data-testid={ `0-${elem}-horizontal-tag` }
-          >
-            {elem}
-          </div>)) }
+        <ShareRecipeButton
+          dataId={ `${i}-horizontal-share-btn` }
+          type={ e.type }
+          id={ e.id }
+        />
+        <input
+          type="image"
+          onClick={ handleRomoveFavorite }
+          name={ e.id }
+          src={ blackHeart }
+          alt="blackHeart"
+          data-testid={ `${i}-horizontal-favorite-btn` }
+        />
       </div>
     ));
-    return cards;
   };
 
   const start = () => {
-    if (doneRecipes === null) {
+    if (getfavoriteRecipes === null) {
       return;
-    } if (doneRecipes !== null) {
-      return doneRecipesMap();
-    }
-  };
-
-  const linkCopiedFunc = () => {
-    if (linkCopied === true) {
-      return <p>Link copied!</p>;
+    } if (getfavoriteRecipes !== null) {
+      return favoriteRecipesMap();
     }
   };
 
@@ -113,7 +98,6 @@ export default function DoneRecipes() {
         >
           All
         </button>
-        { linkCopiedFunc() }
         { start() }
       </form>
     </div>

@@ -17,6 +17,8 @@ function RecipesProvider({ children }) {
     toggleButton,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
   } = useHookRecipes();
 
   // funçao que controla a requisiçao da Api
@@ -45,10 +47,13 @@ function RecipesProvider({ children }) {
     setPage,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
     toggleButton,
   }
-  ), [api, category, categorysApi, loading, page,
-    setApi, setCategory, setCategorysApi, setLoading, setPage, toggleButton]);
+  ), [api, category, categorysApi, favoriteRecipes, loading, page,
+    setApi, setCategory, setCategorysApi, setFavoriteRecipes,
+    setLoading, setPage, toggleButton]);
 
   return (
     <RecipesContext.Provider

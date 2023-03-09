@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+import share from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-function ShareRecipeButton() {
-  const location = useLocation();
+function ShareRecipeButton({ dataId, type, id }) {
   const [alert, setAlert] = useState('');
 
-  const handleCopy = () => {
-    copy(`http://localhost:3000${location.pathname}`);
+  const handleCopy = (e) => {
+    e.preventDefault();
+    copy(`http://localhost:3000/${type}s/${id}`);
     setAlert('Link copied!');
   };
 
   return (
     <>
-      <button
-        data-testid="share-btn"
+      <input
+        type="image"
+        // data-testid="share-btn"
+        data-testid={ dataId || 'share-btn' }
+        src={ share }
+        alt="Share button"
         onClick={ handleCopy }
-      >
-        Share Recipe
-      </button>
+      />
       <span>{alert}</span>
     </>
   );
 }
 
 export default ShareRecipeButton;
+// ShareRecipeButton.propTypes = {
+//   dataId: PropTypes.string.isRequired,
+//   type: PropTypes.string.isRequired,
+//   id: PropTypes.string.isRequired,
+// };

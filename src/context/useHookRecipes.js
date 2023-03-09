@@ -11,7 +11,8 @@ function useHookRecipes() {
   const [loading, setLoading] = useState(true);
   // page serve para constrolar em qual pagina esta
   const [page, setPage] = useState('meals');
-
+  // favoriteRecipes serve para contra os favoritos no localstorage
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   // botao para selecionar a categoria
   const toggleButton = ({ target }) => {
     const { name } = target;
@@ -34,6 +35,8 @@ function useHookRecipes() {
     setPage,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
     toggleButton,
   };
 }
