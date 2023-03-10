@@ -12,12 +12,8 @@ function useHookRecipes() {
   // page serve para constrolar em qual pagina esta
   const history = window.location.pathname.slice(1);
   const [page, setPage] = useState(history);
-<<<<<<< HEAD
-
-=======
   // favoriteRecipes serve para contra os favoritos no localstorage
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
->>>>>>> f6130d5de1aeb2f60c8a95db83c2a679ea537969
   // botao para selecionar a categoria
 
   const toggleButton = ({ target }) => {
