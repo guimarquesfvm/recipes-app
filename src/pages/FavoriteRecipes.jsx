@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import blackHeart from '../images/blackHeartIcon.svg';
 import ShareRecipeButton from '../components/ShareRecipeButton';
+import Header from '../components/Header';
 
 export default function DoneRecipes() {
   const [filterClick, setFilterClick] = useState('All');
@@ -76,6 +77,7 @@ export default function DoneRecipes() {
 
   return (
     <div>
+      <Header title="Favorite Recipes" />
       <form>
         <button
           type="button"

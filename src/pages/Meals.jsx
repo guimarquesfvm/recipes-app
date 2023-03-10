@@ -6,7 +6,7 @@ import Header from '../components/Header';
 export default function Meals() {
   return (
     <>
-      <Header title="teste" />
+      <Header title="Meals" />
       <CardReceitas />
       <Footer />
     </>
