@@ -42,14 +42,13 @@ export default function SearchBar() {
         history.push(`/meals/${api.meals[0].idMeal}`);
       }
       setApi(api.meals.slice(0, doze));
-    } else if (api.drinks && api.drinks.length > 0) {
+    } if (api.drinks && api.drinks.length > 0) {
       if (api.drinks.length === 1) {
         history.push(`/drinks/${api.drinks[0].idDrink}`);
       }
       setApi(api.drinks.slice(0, doze));
-    } else {
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   return (
