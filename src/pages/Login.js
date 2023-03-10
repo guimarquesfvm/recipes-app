@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import RecipesContext from '../context/RecipesContext';
 
 function Login(props) {
   const { history } = props;
+  const { setPage } = useContext(RecipesContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validation, setValidation] = useState(true);
@@ -16,6 +18,7 @@ function Login(props) {
   const handleSubmit = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
     history.push('/meals');
+    setPage(window.location.pathname.slice(1));
   };
 
   return (

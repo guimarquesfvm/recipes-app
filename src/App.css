@@ -68,17 +68,18 @@
 }
 
 .caroussel-container {
-  width: 300px;
-  text-align: center;
   display: flex;
-  overflow-x: auto;
   gap: 10px;
+  overflow-x: auto;
+  text-align: center;
+  width: 300px;
 }
 
 .start-recipe-btn {
-  position: fixed;
   bottom: 0;
+  position: fixed;
 }
+
 body {
   padding-bottom: 30px;
 }

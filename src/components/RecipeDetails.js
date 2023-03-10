@@ -78,7 +78,7 @@ function RecipeDetails(props) {
             <DrinkRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idMeal } category="meals" />
             <FavoriteRecipeButton recipe={ recipe } category="meal" />
-            <ShareRecipeButton />
+            <ShareRecipeButton type="meal" id={ recipe.idMeal } dataId="share-btn" />
           </>
         ) : (
           <>
@@ -90,7 +90,7 @@ function RecipeDetails(props) {
             <MealRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
             <FavoriteRecipeButton recipe={ recipe } category="drink" />
-            <ShareRecipeButton />
+            <ShareRecipeButton type="meal" id={ recipe.idDrink } dataId="share-btn" />
           </>
         )}
       </div>

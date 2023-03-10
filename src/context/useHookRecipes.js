@@ -10,12 +10,14 @@ function useHookRecipes() {
   // controla o loding
   const [loading, setLoading] = useState(true);
   // page serve para constrolar em qual pagina esta
-  const [page, setPage] = useState('drinks');
-
+  const history = window.location.pathname.slice(1);
+  const [page, setPage] = useState(history);
+  // favoriteRecipes serve para contra os favoritos no localstorage
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   // botao para selecionar a categoria
+
   const toggleButton = ({ target }) => {
     const { name } = target;
-    setLoading(true);
     if (category === name) {
       setCategory('');
       return;
@@ -23,6 +25,9 @@ function useHookRecipes() {
     setCategory(name);
   };
 
+  const toggleButtonAll = () => {
+    setCategory('');
+  };
   return {
     category,
     setCategory,
@@ -34,7 +39,10 @@ function useHookRecipes() {
     setPage,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
     toggleButton,
+    toggleButtonAll,
   };
 }
 

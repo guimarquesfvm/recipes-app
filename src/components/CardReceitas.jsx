@@ -69,15 +69,24 @@ import Loading from './Loading';
 //   { strCategory: 'Starter' }, { strCategory: 'Vegan' }, { strCategory: 'Vegetarian' }] };
 
 const limiter = 5;
+const limiter2 = 12;
 export default function CardReceitas() {
-  const { toggleButton, api, loading, page, categorysApi } = useContext(RecipesContext);
+  const { toggleButton, toggleButtonAll, api,
+    loading, page, categorysApi } = useContext(RecipesContext);
   const pageName = page === 'meals' ? 'Meal' : 'Drink';
   console.log(pageName);
   return (
 
     <div>
       <label>
-        {categorysApi.map((category, ind) => ind <= limiter
+        <button
+          type="button"
+          onClick={ toggleButtonAll }
+          data-testid="All-category-filter"
+        >
+          All
+        </button>
+        {categorysApi.map((category, ind) => ind < limiter
         && (
           <button
             key={ ind }
@@ -91,24 +100,30 @@ export default function CardReceitas() {
         ))}
 
       </label>
-      {loading ? <Loading /> : api.map((receita, index) => (
-        <Link
-          to={ `/${page}/${receita[`id${pageName}`]}` }
+      {loading ? <Loading /> : api.map((receita, index) => (index < limiter2
+      && (
+        <div
           key={ receita[`id${pageName}`] }
           data-testid={ `${index}-recipe-card` }
         >
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ receita[`str${pageName}Thumb`] }
-            alt={ receita[`str${pageName}`] }
-          />
-          <span
-            data-testid={ `${index}-card-name` }
+          <Link
+            to={ `/${page}/${receita[`id${pageName}`]}` }
           >
-            {receita[`str${pageName}`]}
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ receita[`str${pageName}Thumb`] }
+              alt={ receita[`str${pageName}`] }
+              width="300px"
+            />
+            <span
+              data-testid={ `${index}-card-name` }
+            >
+              {receita[`str${pageName}`]}
 
-          </span>
-        </Link>
+            </span>
+          </Link>
+        </div>
+      )
       ))}
     </div>
 
