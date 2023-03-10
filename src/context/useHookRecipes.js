@@ -14,8 +14,6 @@ function useHookRecipes() {
   const [page, setPage] = useState(history);
   // favoriteRecipes serve para contra os favoritos no localstorage
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  // cria a chave email no local storage
-  localStorage.setItem('user', JSON.stringify({ email: '' }));
 
   // botao para selecionar a categoria
   const toggleButton = ({ target }) => {

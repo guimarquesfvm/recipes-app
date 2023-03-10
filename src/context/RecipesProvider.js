@@ -22,6 +22,8 @@ function RecipesProvider({ children }) {
     toggleButtonAll,
   } = useHookRecipes();
 
+  const getStorage = JSON.parse(localStorage.getItem('user'));
+
   // funçao que controla a requisiçao da Api
   const requestApi = async () => {
     setLoading(true);
@@ -36,6 +38,9 @@ function RecipesProvider({ children }) {
 
   useEffect(() => {
     requestApi();
+    if (!getStorage) {
+      localStorage.setItem('user', JSON.stringify({ email: '' }));
+    }
   }, [category, page]);
 
   const hookMeals = useMemo(() => ({

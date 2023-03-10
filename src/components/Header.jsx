@@ -7,8 +7,8 @@ import SearchBar from './SearchBar';
 
 function Header({ title }) {
   const [showBar, setShowBar] = useState(false);
-  const ValidateHeader = title === 'Profile' || title === 'Done Recipes' || title ===  'Favorite Recipes';
-  console.log(ValidateHeader);
+  const ValidateHeader = title === 'Profile'
+  || title === 'Done Recipes' || title === 'Favorite Recipes';
   // Estado usado para esconder a barra
   const history = useHistory();
   return (

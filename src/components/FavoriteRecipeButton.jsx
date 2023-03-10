@@ -30,7 +30,7 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
     const some = favoriteRecipes?.some((el) => el.id === toSave.id);
     if (some) {
       const newArr = favoriteRecipes.filter((el) => (el.id !== toSave.id)
-      || (el.id !== obj.id));
+      || (obj && (el.id !== obj.id)));
       setFavoriteRecipes(newArr);
     } else {
       const newArr = [...favoriteRecipes, toSave];
