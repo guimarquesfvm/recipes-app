@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import share from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
@@ -13,12 +13,22 @@ function ShareRecipeButton({ dataId, type, id }) {
     setAlert('Link copied!');
   };
 
+  // const handleCopy = () => {
+  //   if (location.pathname.includes('/in-progress')) {
+  //     copy(`http://localhost:3000${location.pathname.replace('/in-progress', '')}`);
+  //     setAlert('Link copied!');
+  //   } else {
+  //     copy(`http://localhost:3000${location.pathname}`);
+  //     setAlert('Link copied!');
+  //   }
+  // };
+
   return (
     <>
       <input
         type="image"
         // data-testid="share-btn"
-        data-testid={ dataId || 'share-btn' }
+        data-testid={ dataId === 'share-btn' ? 'share-btn' : dataId }
         src={ share }
         alt="Share button"
         onClick={ handleCopy }
@@ -29,8 +39,8 @@ function ShareRecipeButton({ dataId, type, id }) {
 }
 
 export default ShareRecipeButton;
-// ShareRecipeButton.propTypes = {
-//   dataId: PropTypes.string.isRequired,
-//   type: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-// };
+ShareRecipeButton.propTypes = {
+  dataId: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+}.isRequired;
