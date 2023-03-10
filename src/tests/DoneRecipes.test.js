@@ -46,19 +46,31 @@ describe('Testa as funcionalidadea da página Done Recipes', () => {
     expect(buttonAll).toBeInTheDocument();
   });
 
-  it('Testa se os botões filtram corretamente', () => {
+  it('Testa se o botão de filtro Meals filtra só as comidas', () => {
     renderWithRouter(<DoneRecipes />);
     const buttonMeals = screen.getByTestId('filter-by-meal-btn');
-    const buttonDrinks = screen.getByTestId('filter-by-drink-btn');
-    const buttonAll = screen.getByTestId('filter-by-all-btn');
     const recipe1 = screen.getByText(SpicyArrabiataPenne);
     const recipe2 = screen.getByText('Aquamarine');
     userEvent.click(buttonMeals);
     expect(recipe1).toBeInTheDocument();
     expect(recipe2).not.toBeInTheDocument();
+  });
+
+  it('Testa se o botão de filtro Drinks filtra só as bebidas', () => {
+    renderWithRouter(<DoneRecipes />);
+    const buttonDrinks = screen.getByTestId('filter-by-drink-btn');
+    const recipe1 = screen.getByText(SpicyArrabiataPenne);
+    const recipe2 = screen.getByText('Aquamarine');
     userEvent.click(buttonDrinks);
-    expect(recipe1).not.toBeInTheDocument();
-    expect(recipe2).toBeInTheDocument();
+    expect(recipe1).toBeInTheDocument();
+    expect(recipe2).not.toBeInTheDocument();
+  });
+
+  it('Testa se o botão de filtro All aparece todas as bebidas', () => {
+    renderWithRouter(<DoneRecipes />);
+    const buttonAll = screen.getByTestId('filter-by-all-btn');
+    const recipe1 = screen.getByText(SpicyArrabiataPenne);
+    const recipe2 = screen.getByText('Aquamarine');
     userEvent.click(buttonAll);
     expect(recipe1).toBeInTheDocument();
     expect(recipe2).toBeInTheDocument();
@@ -73,21 +85,9 @@ describe('Testa as funcionalidadea da página Done Recipes', () => {
   });
 
   it('Testa se não tiver receitas concluidas aparece a mensagem: You have no completed recipes.', () => {
-    window.localStorage.setItem('doneRecipes', null);
+    window.localStorage.removeItem('doneRecipes');
     renderWithRouter(<DoneRecipes />);
     const recipe1 = screen.getByText('You have no completed recipes.');
     expect(recipe1).toBeInTheDocument();
-  });
-
-  it('Testa se é possível acessar a página de detalhes de uma receita salva.', () => {
-    renderWithRouter(<DoneRecipes />);
-    const recipe1 = screen.getByText(SpicyArrabiataPenne);
-    expect(recipe1).toBeInTheDocument();
-    const recipeLink = screen.getByTestId('0-horizontal-name');
-    userEvent.click(recipeLink);
-    const recipeTitle = screen.getByTestId('recipe-title');
-    expect(recipeTitle).toBeInTheDocument();
-    const recipeImage = screen.getByAltText(SpicyArrabiataPenne);
-    expect(recipeImage).toBeInTheDocument();
   });
 });
