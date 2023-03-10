@@ -17,10 +17,14 @@ function RecipesProvider({ children }) {
     toggleButton,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
+    toggleButtonAll,
   } = useHookRecipes();
 
   // funçao que controla a requisiçao da Api
   const requestApi = async () => {
+    setLoading(true);
     if (category === '') {
       setApi(await mealsAPI(page));
     } else {
@@ -45,10 +49,14 @@ function RecipesProvider({ children }) {
     setPage,
     categorysApi,
     setCategorysApi,
+    favoriteRecipes,
+    setFavoriteRecipes,
     toggleButton,
+    toggleButtonAll,
   }
-  ), [api, category, categorysApi, loading, page,
-    setApi, setCategory, setCategorysApi, setLoading, setPage, toggleButton]);
+  ), [api, category, categorysApi, favoriteRecipes, loading, page,
+    setApi, setCategory, setCategorysApi, setFavoriteRecipes,
+    setLoading, setPage, toggleButton, toggleButtonAll]);
 
   return (
     <RecipesContext.Provider
