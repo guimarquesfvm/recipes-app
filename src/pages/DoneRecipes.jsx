@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import share from '../images/shareIcon.svg';
+import Header from '../components/Header';
 
 export default function DoneRecipes() {
   const [linkCopied, setLinkCopied] = useState(false);
@@ -89,6 +90,7 @@ export default function DoneRecipes() {
 
   return (
     <div>
+      <Header title="Done Recipes" />
       <form>
         <button
           type="button"

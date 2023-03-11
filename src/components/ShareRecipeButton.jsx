@@ -8,8 +8,13 @@ function ShareRecipeButton() {
   const [alert, setAlert] = useState('');
 
   const handleCopy = () => {
-    copy(`http://localhost:3000${location.pathname}`);
-    setAlert('Link copied!');
+    if (location.pathname.includes('/in-progress')) {
+      copy(`http://localhost:3000${location.pathname.replace('/in-progress', '')}`);
+      setAlert('Link copied!');
+    } else {
+      copy(`http://localhost:3000${location.pathname}`);
+      setAlert('Link copied!');
+    }
   };
 
   return (

@@ -1,12 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
   return (
     <div>
-      Profile
+      <Header title="Profile" />
       <h2
         data-testid="profile-email"
       >
