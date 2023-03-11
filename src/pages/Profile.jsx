@@ -1,12 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
+  // pega o storage para comparacao em casa do nao iniciar na rota /login
+  const getStorage = JSON.parse(localStorage.getItem('user'));
+  if (!getStorage) {
+    localStorage.setItem('user', JSON.stringify({ email: '' }));
+  }
+
   return (
     <div>
-      Profile
+      <Header title="Profile" />
       <h2
         data-testid="profile-email"
       >

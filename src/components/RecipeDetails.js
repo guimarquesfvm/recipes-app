@@ -90,7 +90,7 @@ function RecipeDetails(props) {
             <MealRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
             <FavoriteRecipeButton recipe={ recipe } category="drink" />
-            <ShareRecipeButton type="meal" id={ recipe.idDrink } dataId="share-btn" />
+            <ShareRecipeButton type="drink" id={ recipe.idDrink } dataId="share-btn" />
           </>
         )}
       </div>

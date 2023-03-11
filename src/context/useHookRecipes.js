@@ -14,8 +14,8 @@ function useHookRecipes() {
   const [page, setPage] = useState(history);
   // favoriteRecipes serve para contra os favoritos no localstorage
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  // botao para selecionar a categoria
 
+  // botao para selecionar a categoria
   const toggleButton = ({ target }) => {
     const { name } = target;
     if (category === name) {

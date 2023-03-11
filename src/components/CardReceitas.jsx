@@ -73,6 +73,13 @@ const limiter2 = 12;
 export default function CardReceitas() {
   const { toggleButton, toggleButtonAll, api,
     loading, page, categorysApi } = useContext(RecipesContext);
+
+  // pega o storage para comparacao em casa do nao iniciar na rota /login
+  const getStorage = JSON.parse(localStorage.getItem('user'));
+  if (!getStorage) {
+    localStorage.setItem('user', JSON.stringify({ email: '' }));
+  }
+
   const pageName = page === 'meals' ? 'Meal' : 'Drink';
   console.log(pageName);
   return (

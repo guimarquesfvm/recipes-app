@@ -7,24 +7,42 @@ import SearchBar from './SearchBar';
 
 function Header({ title }) {
   const [showBar, setShowBar] = useState(false);
+  const ValidateHeader = title === 'Profile'
+  || title === 'Done Recipes' || title === 'Favorite Recipes';
   // Estado usado para esconder a barra
   const history = useHistory();
   return (
     <header>
       <h1>Recipes App</h1>
       <div>
-        <button data-testid="search-top-btn" onClick={ () => { setShowBar(!showBar); } }>
-          <img src={ searchIcon } alt="Search Icon" />
-        </button>
-        <button
+        {ValidateHeader ? ''
+          : (
+            <input
+              type="image"
+              data-testid="search-top-btn"
+              src={ searchIcon }
+              alt="Search Icon"
+              onClick={ (e) => {
+                e.preventDefault();
+                setShowBar(!showBar);
+              } }
+            />
+          )}
+
+        <input
+          type="image"
           data-testid="profile-top-btn"
-          onClick={ () => { history.push('/profile'); } }
-        >
-          <img src={ profileIcon } alt="Profile Icon" />
-        </button>
+          src={ profileIcon }
+          alt="Profile Icon"
+          onClick={ (e) => {
+            e.preventDefault();
+            history.push('/profile');
+          } }
+        />
+
       </div>
       <div>
-        <h3>{ title }</h3>
+        <h3 data-testid="page-title">{ title }</h3>
       </div>
       {
         showBar
