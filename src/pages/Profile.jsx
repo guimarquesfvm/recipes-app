@@ -5,6 +5,12 @@ import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
+  // pega o storage para comparacao em casa do nao iniciar na rota /login
+  const getStorage = JSON.parse(localStorage.getItem('user'));
+  if (!getStorage) {
+    localStorage.setItem('user', JSON.stringify({ email: '' }));
+  }
+
   return (
     <div>
       <Header title="Profile" />
@@ -25,7 +31,7 @@ export default function Profile() {
         data-testid="profile-favorite-btn"
         onClick={ () => history.push('/favorite-recipes') }
       >
-        Favorites Recipes
+        Favorite Recipes
 
       </button>
       <button

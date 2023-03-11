@@ -22,6 +22,7 @@ function Footer() {
         type="image"
         id="drink-button"
         data-testid="drinks-bottom-btn"
+        disabled={ window.location.pathname === '/drinks' }
         onClick={ () => {
           setLoading(true);
           setPage('drinks');
@@ -36,6 +37,7 @@ function Footer() {
         type="button"
         id="meal-button"
         data-testid="meals-bottom-btn"
+        disabled={ window.location.pathname === '/meals' }
         onClick={ () => {
           setLoading(true);
           setPage('meals');

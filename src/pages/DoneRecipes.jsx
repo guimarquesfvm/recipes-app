@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import share from '../images/shareIcon.svg';
 import Header from '../components/Header';
 
@@ -8,25 +9,29 @@ export default function DoneRecipes() {
   const [filterClick, setFilterClick] = useState('All');
 
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  // console.log(doneRecipes);
 
-  function onClickShare(element) {
+  const onClickShare = async (element) => {
     const copyText = `${window.location.origin}/${element.type}s/${element.id}`;
-
-    navigator.clipboard.writeText(copyText);
+    try {
+      await navigator.clipboard.writeText(copyText);
+    } catch (e) {
+      console.log(e);
+    }
 
     // console.log(copyText);
 
-    return setLinkCopied(true);
-  }
+    setLinkCopied(true);
+  };
 
   const filter = () => {
-    if (filterClick === 'All') {
-      return doneRecipes;
-    } if (filterClick === 'Meals') {
+    if (filterClick === 'Meals') {
       return doneRecipes.filter((element) => element.type === 'meal');
     } if (filterClick === 'Drinks') {
+      console.log('to nos drinks');
       return doneRecipes.filter((element) => element.type === 'drink');
     }
+    return doneRecipes;
   };
 
   const doneRecipesMap = () => {
@@ -54,14 +59,16 @@ export default function DoneRecipes() {
         </Link>
         <p data-testid={ `${i}-horizontal-done-date` }>{ e.doneDate }</p>
         <p data-testid={ `${i}-horizontal-top-text` }>{ e.alcoholicOrNot }</p>
-        <button
-          type="button"
+        <input
+          type="image"
           data-testid={ `${i}-horizontal-share-btn` }
           src={ share }
-          onClick={ () => onClickShare(e) }
-        >
-          <img src={ share } alt="Share button" />
-        </button>
+          alt="share"
+          onClick={ (ev) => {
+            ev.preventDefault();
+            onClickShare(e);
+          } }
+        />
         { e.tags.map((elem, ind) => (
           <div
             key={ ind }
@@ -76,16 +83,16 @@ export default function DoneRecipes() {
 
   const start = () => {
     if (doneRecipes === null) {
-      return;
-    } if (doneRecipes !== null) {
-      return doneRecipesMap();
+      return <p>You have no completed recipes.</p>;
     }
+    return doneRecipesMap();
   };
 
-  const linkCopiedFunc = () => {
+  const link = () => {
     if (linkCopied === true) {
-      return <p>Link copied!</p>;
+      return <p data-testid="link">Link copied!</p>;
     }
+    return <p data-testid="link" />;
   };
 
   return (
@@ -113,7 +120,7 @@ export default function DoneRecipes() {
         >
           All
         </button>
-        { linkCopiedFunc() }
+        { link() }
         { start() }
       </form>
     </div>
