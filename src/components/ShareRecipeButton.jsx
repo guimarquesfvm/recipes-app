@@ -20,7 +20,6 @@ function ShareRecipeButton({ dataId, type, id }) {
     e.preventDefault();
     copy(`http://localhost:3000/${type}s/${id}`);
     setAlert('Link copied!');
-
   };
 
   // const handleCopy = () => {

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import share from '../images/shareIcon.svg';
-import Header from '../components/Header';
 
 export default function DoneRecipes() {
   const [linkCopied, setLinkCopied] = useState(false);
