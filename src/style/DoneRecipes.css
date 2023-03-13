@@ -1,0 +1,53 @@
+.filter-done {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.filter-done button {
+  background-color: white;
+  border: 0;
+}
+
+#pL {
+  text-align: center;
+}
+
+.card-done {
+  border: 0.517989px solid #B1B1B1;
+  width: 300px;
+  height: 150px;
+  margin: auto;
+  margin-bottom: 10px;
+  display: flex;
+  font-size: small;
+  border-radius: 5px;
+}
+
+.card-done img {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.espec-card {
+  margin: 10px;
+}
+
+.espec-card p {
+  margin: 3px;
+}
+
+.espec-card a {
+ text-decoration: none;
+ color: black;
+}
+
+.tags {
+  display: flex;
+}
+
+.tags div {
+  margin-right: 5px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  padding: 1px 3px;
+}
