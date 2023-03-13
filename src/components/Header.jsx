@@ -5,8 +5,9 @@ import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
 
-function Header({ title }) {
+function Header(props) {
   const [showBar, setShowBar] = useState(false);
+  const { title } = props;
   const ValidateHeader = title === 'Profile'
   || title === 'Done Recipes' || title === 'Favorite Recipes';
   // Estado usado para esconder a barra
