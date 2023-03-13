@@ -70,7 +70,11 @@ function RecipeInProgress(props) {
               measurements={ measurements }
             />
             <FavoriteRecipeButton recipe={ recipe } category="meal" />
-            <ShareRecipeButton />
+            <ShareRecipeButton
+              dataId="share-btn"
+              id={ id }
+              type="meal"
+            />
           </>
         ) : (
           <>
@@ -80,7 +84,11 @@ function RecipeInProgress(props) {
               measurements={ measurements }
             />
             <FavoriteRecipeButton recipe={ recipe } category="drink" />
-            <ShareRecipeButton />
+            <ShareRecipeButton
+              dataId="share-btn"
+              id={ id }
+              type="drink"
+            />
           </>
         )}
       </div>
