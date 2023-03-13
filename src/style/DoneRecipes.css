@@ -1,7 +1,7 @@
 .filter-done {
   display: flex;
-  margin: auto;
   justify-content: space-around;
+  margin: auto;
 }
 
 .filter-done button {
@@ -9,23 +9,23 @@
   border: 0;
 }
 
-#pL {
+.pL {
   text-align: center;
 }
 
 .card-done {
-  border: 0.517989px solid #B1B1B1;
-  width: 300px;
+  border: 0.518px solid #b1b1b1;
+  border-radius: 5px;
+  display: flex;
+  font-size: small;
   height: 150px;
   margin: auto;
   margin-bottom: 10px;
-  display: flex;
-  font-size: small;
-  border-radius: 5px;
+  width: 300px;
 }
 
 .card-done img {
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0 0 5px;
 }
 
 .espec-card {
@@ -37,8 +37,8 @@
 }
 
 .espec-card a {
- text-decoration: none;
- color: black;
+  color: black;
+  text-decoration: none;
 }
 
 .tags {
@@ -46,8 +46,8 @@
 }
 
 .tags div {
-  margin-right: 5px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 10px;
+  margin-right: 5px;
   padding: 1px 3px;
 }

@@ -90,16 +90,16 @@ export default function DoneRecipes() {
 
   const start = () => {
     if (doneRecipes === null) {
-      return <p id="pL">You have no completed recipes.</p>;
+      return <p className="pL">You have no completed recipes.</p>;
     }
     return doneRecipesMap();
   };
 
   const link = () => {
     if (linkCopied === true) {
-      return <p data-testid="link" id="pL">Link copied!</p>;
+      return <p data-testid="link" className="pL">Link copied!</p>;
     }
-    return <p data-testid="link" id="pL" />;
+    return <p data-testid="link" className="pL" />;
   };
 
   return (
