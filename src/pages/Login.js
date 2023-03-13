@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
+import '../style/login.css';
+import logo from '../images/logo Recipes App.png';
 
 function Login(props) {
   const { history } = props;
@@ -23,24 +25,29 @@ function Login(props) {
 
   return (
     <form className="login-container">
-      <h1>Login</h1>
+      <img src={ logo } alt="logo" />
+      <h1 className="login-title">Login</h1>
       <label htmlFor="email">
         Email:
+        <br />
         <input
           id="email"
           type="email"
           data-testid="email-input"
           onChange={ (e) => setEmail(e.target.value) }
+          className="login-input"
         />
       </label>
 
       <label htmlFor="password">
         Senha:
+        <br />
         <input
           id="password"
           type="password"
           data-testid="password-input"
           onChange={ (e) => setPassword(e.target.value) }
+          className="login-input"
         />
       </label>
 
@@ -49,6 +56,7 @@ function Login(props) {
         type="button"
         disabled={ !validation }
         onClick={ handleSubmit }
+        className="login-button"
       >
         Entrar
       </button>

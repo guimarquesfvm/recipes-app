@@ -9,6 +9,7 @@ import MealRecomendations from './MealRecomendations';
 import StartRecipeButton from './StartRecipeButton';
 import ShareRecipeButton from './ShareRecipeButton';
 import FavoriteRecipeButton from './FavoriteRecipeButton';
+import '../style/DetailsRecipe.css';
 
 function RecipeDetails(props) {
   const { match: { url, params: { id } } } = props;
@@ -64,33 +65,36 @@ function RecipeDetails(props) {
 
   return (
     <div>
-      <h1>
-        Recipe Details
-      </h1>
       <div>
         {url.includes('meals') ? (
           <>
+            <div className="share-and-favorite-container">
+              <FavoriteRecipeButton recipe={ recipe } category="meal" />
+              <ShareRecipeButton type="meal" id={ recipe.idMeal } dataId="share-btn" />
+            </div>
             <MealRecipeCard
               recipe={ recipe }
               ingredients={ ingredients }
               measurements={ measurements }
             />
+            <h2 className="tag-h2"><b>Recomendations</b></h2>
             <DrinkRecomendations recomendations={ recomendations } />
             <StartRecipeButton recipeID={ recipe.idMeal } category="meals" />
-            <FavoriteRecipeButton recipe={ recipe } category="meal" />
-            <ShareRecipeButton type="meal" id={ recipe.idMeal } dataId="share-btn" />
           </>
         ) : (
           <>
+            <div className="share-and-favorite-container">
+              <FavoriteRecipeButton recipe={ recipe } category="drink" />
+              <ShareRecipeButton type="drink" id={ recipe.idDrink } dataId="share-btn" />
+            </div>
             <DrinkRecipeCard
               recipe={ recipe }
               ingredients={ ingredients }
               measurements={ measurements }
             />
+            <h2 className="tag-h2"><b>Recomendations</b></h2>
             <MealRecomendations recomendations={ recomendations } />
-            <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
-            <FavoriteRecipeButton recipe={ recipe } category="drink" />
-            <ShareRecipeButton type="drink" id={ recipe.idDrink } dataId="share-btn" />
+            {/* <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" /> */}
           </>
         )}
       </div>

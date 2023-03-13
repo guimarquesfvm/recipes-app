@@ -32,7 +32,7 @@ function ShareRecipeButton() {
         src={ share }
         alt="Share button"
       >
-        Share Recipe
+        <img src={ share } alt="share recipe" />
       </button>
       <span>{alert}</span>
     </>

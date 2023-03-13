@@ -18,25 +18,34 @@ function MealRecipeCard({ recipe, ingredients, measurements }) {
 
   return (
     <div>
-      <h3 data-testid="recipe-title">{strMeal}</h3>
-      <p data-testid="recipe-category">{strCategory}</p>
-      <img
-        src={ strMealThumb }
-        alt={ strMeal }
-        style={ { width: 200 } }
-        data-testid="recipe-photo"
-      />
-      <ul>
+      <div className="apresentation-container">
+        <h1 data-testid="recipe-title" className="recipe-title">{strMeal}</h1>
+        <img
+          src={ strMealThumb }
+          alt={ strMeal }
+          data-testid="recipe-photo"
+          className="recipe-photo"
+        />
+      </div>
+      <p data-testid="recipe-category" className="recipe-category">{strCategory}</p>
+      <h2 className="tag-h2"><b>Ingredients</b></h2>
+      <ul className="ingredients-container">
         {
           ingredients.map((e, i) => (
-            <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
+            <li
+              key={ i }
+              data-testid={ `${i}-ingredient-name-and-measure` }
+              className="ingredient-li"
+            >
               {`${e[1]} - ${measurements[i][1]}`}
             </li>
           ))
         }
       </ul>
-      <div>
+      <h2 className="tag-h2"><b>Instructions</b></h2>
+      <div className="instructions-container">
         <p data-testid="instructions">{strInstructions}</p>
+        <h2 className="tag-h2"><b>Video</b></h2>
         <iframe
           src={ embedHTML }
           title="instructions video"

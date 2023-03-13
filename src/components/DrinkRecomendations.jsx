@@ -6,7 +6,11 @@ function DrinkRecomendations({ recomendations }) {
     <ul className="caroussel-container">
       {
         recomendations.map((card, i) => (
-          <li key={ card.idDrink } data-testid={ `${i}-recommendation-card` }>
+          <li
+            key={ card.idDrink }
+            data-testid={ `${i}-recommendation-card` }
+            className="recomendation-card"
+          >
             <img
               src={ card.strDrinkThumb }
               alt={ card.strDrink }
