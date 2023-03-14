@@ -109,7 +109,8 @@ export default function CardReceitas() {
         ))}
 
       </label>
-      {loading && api.length > 0 ? <Loading /> : api.map((receita, index) => (index < limiter2
+      {loading && api.length > 0 ? <Loading /> : api
+        .map((receita, index) => (index < limiter2
       && (
         <div
           key={ receita[`id${pageName}`] }
@@ -133,7 +134,7 @@ export default function CardReceitas() {
           </Link>
         </div>
       )
-      ))}
+        ))}
     </div>
 
   );

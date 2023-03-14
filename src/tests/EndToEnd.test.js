@@ -10,6 +10,7 @@ afterEach(() => { jest.clearAllMocks(); });
 
 describe('end to end do projeto', () => {
   const beefExpect = 'Beef-category-filter';
+  const email = 'profile-email';
   it('Testando a aplicaçao', async () => {
     jest.spyOn(global, 'fetch').mockImplementation(fetch);
 
@@ -95,7 +96,7 @@ describe('end to end do projeto', () => {
   it('testando caminho para profile', async () => {
     jest.spyOn(global, 'fetch').mockImplementation(fetch);
 
-    renderWithRouter(<RecipesProvider><App /></RecipesProvider>);
+    const { history } = renderWithRouter(<RecipesProvider><App /></RecipesProvider>);
     expect(await screen.findByText('Login')).toBeInTheDocument();
 
     const inputEmail = screen.getByRole('textbox', { name: /email/i });
@@ -109,12 +110,19 @@ describe('end to end do projeto', () => {
     expect(screen.getByText('Meals')).toBeInTheDocument();
 
     await waitForElementToBeRemoved(() => screen.getByText('Loading'));
+    const btnSearch = await screen.findByRole('button', { name: /search icon/i });
+    userEvent.click(btnSearch);
+    expect(await screen.findByText(/search/i)).toBeInTheDocument();
+    const btnSearch2 = await screen.findByRole('button', { name: /search icon/i });
+    userEvent.click(btnSearch2);
+
     expect(await screen.findByTestId(beefExpect)).toBeInTheDocument();
     expect(await screen.findByRole('img', { name: /corba/i })).toBeInTheDocument();
     const btnProfile = screen.getByRole('button', { name: /profile icon/i });
     userEvent.click(btnProfile);
+    expect(history.location.pathname).toBe('/profile');
     expect(await screen.findByText('Profile'));
-    expect(screen.getByTestId('profile-email'));
+    expect(screen.getByTestId(email));
 
     const btnFavorites = screen.getByRole('button', { name: /favorite recipes/i });
     userEvent.click(btnFavorites);
@@ -130,15 +138,15 @@ describe('end to end do projeto', () => {
 
     const btnProfile2 = screen.getByRole('button', { name: /profile icon/i });
     userEvent.click(btnProfile2);
-    expect(screen.getByTestId('profile-email'));
+    expect(screen.getByTestId(email));
 
     const btnDone = screen.getByRole('button', { name: /done recipes/i });
     userEvent.click(btnDone);
     expect(await screen.findByText('Done Recipes'));
 
-    const btnMealsDone = screen.getByRole('button', { name: /meals/i });
-    const btnDrinksDone = screen.getByRole('button', { name: /drinks/i });
-    const btnAllDone = screen.getByRole('button', { name: /all/i });
+    const btnMealsDone = screen.getByRole('img', { name: /meals button/i });
+    const btnDrinksDone = screen.getByRole('img', { name: /drinks button/i });
+    const btnAllDone = screen.getByRole('img', { name: /all button/i });
 
     userEvent.click(btnMealsDone);
     userEvent.click(btnDrinksDone);
@@ -148,11 +156,11 @@ describe('end to end do projeto', () => {
 
     const btnProfile3 = screen.getByRole('button', { name: /profile icon/i });
     userEvent.click(btnProfile3);
-    expect(screen.getByTestId('profile-email'));
+    expect(screen.getByTestId(email));
 
     const btnLogout = screen.getByRole('button', { name: /logout/i });
     userEvent.click(btnLogout);
-    expect(await screen.getByText('Login'));
+    expect(await screen.findByText('Login'));
     // const btnSearch = await screen.findByRole('button', { name: /search icon/i });
   });
 });
