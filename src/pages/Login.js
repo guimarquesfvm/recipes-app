@@ -40,7 +40,7 @@ function Login(props) {
       </label>
 
       <label htmlFor="password">
-        Senha:
+        Pasword:
         <br />
         <input
           id="password"
@@ -58,7 +58,7 @@ function Login(props) {
         onClick={ handleSubmit }
         className="login-button"
       >
-        Entrar
+        Login
       </button>
     </form>
   );
