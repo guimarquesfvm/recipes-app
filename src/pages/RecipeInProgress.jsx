@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-// import { Redirect } from 'react-router-dom';
 import recipeDetailsAPI from '../helpers/recipeDetailsAPI';
 import MealRecipeCardInProgress from '../components/MealRecipeCardInProgress';
 import DrinkRecipeCardInProgress from '../components/DrinkRecipeCardInProgress';
 import ShareRecipeButton from '../components/ShareRecipeButton';
 import FavoriteRecipeButton from '../components/FavoriteRecipeButton';
+import '../style/RecipeInProgress.css';
 
 function RecipeInProgress(props) {
   const { match: { url, params: { id } } } = props;
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [measurements, setMeasurements] = useState([]);
-  // const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -33,38 +32,13 @@ function RecipeInProgress(props) {
     });
   }, [url, id]);
 
-  const isRecipeFinished = ingredients.every((_, index) => {
-    const savedList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
-    const savedIngredients = savedList[url.includes('meals') ? 'meals' : 'drinks']?.[id];
-    return savedIngredients?.[index] ?? false;
-  });
-
-  // const handleFinishBtn = () => {
-  //   const savedList = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-  //   const recipeType = url.includes('meals') ? 'meals' : 'drinks';
-  //   const recipeObj = {
-  //     id: recipe.id,
-  //     type: recipeType,
-  //     area: recipe.strArea || '',
-  //     category: recipe.strCategory,
-  //     alcoholicOrNot: recipe.strAlcoholic || '',
-  //     name: recipe.strMeal || recipe.strDrink,
-  //     image: recipe.strMealThumb || recipe.strDrinkThumb,
-  //     doneDate: new Date().toLocaleDateString('pt-BR'),
-  //     tags: recipe.strTags ? recipe.strTags.split(',') : [],
-  //   };
-  //   localStorage.setItem('doneRecipes', JSON.stringify([...savedList, recipeObj]));
-  //   setRedirect(true);
-  //   if (redirect) history.push('/done-recipes');
-  // };
-
   return (
     <div>
-      <h1>Recipe in Progress</h1>
-      <div>
+      <div className="recipe-container">
         {url.includes('meals') ? (
           <>
             <MealRecipeCardInProgress
+              className="recipe-card"
               recipe={ recipe }
               ingredients={ ingredients }
               measurements={ measurements }
@@ -77,6 +51,7 @@ function RecipeInProgress(props) {
         ) : (
           <>
             <DrinkRecipeCardInProgress
+              className="recipe-card"
               recipe={ recipe }
               ingredients={ ingredients }
               measurements={ measurements }
@@ -85,15 +60,6 @@ function RecipeInProgress(props) {
             <ShareRecipeButton dataId="share-btn" />
           </>
         )}
-      </div>
-      <div style={ { position: 'fixed', bottom: 0, left: 0, right: 0 } }>
-        <button
-          data-testid="finish-recipe-btn"
-          disabled={ !isRecipeFinished }
-          // onClick={ handleFinishBtn }
-        >
-          Finish Recipe
-        </button>
       </div>
     </div>
   );

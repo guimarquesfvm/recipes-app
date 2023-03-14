@@ -7,11 +7,11 @@ function StartRecipeButton({ recipeID, category }) {
 
   useEffect(() => {
     // testa se a recipe atual está no array de doneRecipes (localStorage)
-    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (doneRecipes) {
-      const isDone = doneRecipes.some((el) => Number(el.id) === Number(recipeID));
-      if (isDone) setButtonText('');
-    }
+    // const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    // if (doneRecipes) {
+    //   const isDone = doneRecipes.some((el) => Number(el.id) === Number(recipeID));
+    //   if (isDone) setButtonText('');
+    // }
     // testa se a recipe atual está no array de doneRecipes (localStorage)
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     console.log(inProgressRecipes);

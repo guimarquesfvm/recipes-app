@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import '../style/MealRecipeCardInProgress.css';
 
 function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const {
@@ -8,8 +10,11 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
     strCategory,
     strInstructions,
     strYoutube,
+    idMeal,
   } = recipe;
 
+  const history = useHistory();
+  const [isRecipeFinished, setIsRecipeFinished] = useState(false);
   const [embedHTML, setEmbedHTML] = useState('');
   useEffect(() => {
     setEmbedHTML(String(strYoutube).replace('/watch?v=', '/embed/'));
@@ -20,11 +25,11 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
   // Salva o progresso da receita em andamento
   useEffect(() => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
-    const savedList = inProgressRecipes.meals && inProgressRecipes.meals[recipe.idMeal];
+    const savedList = inProgressRecipes.meals && inProgressRecipes.meals[idMeal];
     if (savedList) {
       setCheckedList(savedList);
     }
-  }, [recipe.idMeal]);
+  }, [idMeal]);
 
   useEffect(() => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
@@ -34,57 +39,75 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
       JSON.stringify({ ...inProgressRecipes, meals: mealInProgress }),
     );
   }, [checkedList, recipe.idMeal]);
-
-  const isRecipeFinished = checkedList.every(Boolean);
+  useEffect(() => {
+    setIsRecipeFinished(checkedList.every((item) => item === true));
+  }, [checkedList]);
 
   return (
     <div>
-      <h3 data-testid="recipe-title">{strMeal}</h3>
-      <p data-testid="recipe-category">{strCategory}</p>
-      <img
-        src={ strMealThumb }
-        alt={ strMeal }
-        style={ { width: 200 } }
-        data-testid="recipe-photo"
-      />
-      <ul>
-        {
-          ingredients?.map((e, i) => (
-            <label
-              key={ i }
-              data-testid={ `${i}-ingredient-step` }
-              style={ { textDecoration: checkedList[i]
-                ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
-            >
-              <input
-                type="checkbox"
-                checked={ checkedList[i] }
-                onChange={ () => {
-                  const newList = [...checkedList];
-                  newList[i] = !newList[i];
-                  setCheckedList(newList);
-                } }
-              />
-              {`${e}  ${measurements[i] ? measurements[i] : ''}`}
-            </label>
-          ))
-        }
-      </ul>
-      <div>
-        <p data-testid="instructions">{strInstructions}</p>
-        <iframe
-          src={ embedHTML }
-          title="instructions video"
-          allowFullScreen
-          data-testid="video"
+      <h1 className="recipe-in-progress">Recipe in Progress</h1>
+      <div className="meal-recipe">
+        <h3 data-testid="recipe-title" className="meal-title">{strMeal}</h3>
+        <p className="meal-category" data-testid="recipe-category">{strCategory}</p>
+        <img
+          className="meal-img"
+          src={ strMealThumb }
+          alt={ strMeal }
+          data-testid="recipe-photo"
         />
+        <h2 className="meal-instruct">Ingredients</h2>
+        <ul className="meal-list">
+          {
+            ingredients?.map((e, i) => (
+              <label
+                className="meal-label"
+                key={ i }
+                data-testid={ `${i}-ingredient-step` }
+                style={ { textDecoration: checkedList[i]
+                  ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
+              >
+                <input
+                  className="meal-checkbox"
+                  type="checkbox"
+                  checked={ checkedList[i] }
+                  onChange={ () => {
+                    const newList = [...checkedList];
+                    newList[i] = !newList[i];
+                    setCheckedList(newList);
+                  } }
+                />
+                {`${e}  ${measurements[i] ? measurements[i] : ''}`}
+              </label>
+            ))
+          }
+        </ul>
+        <div>
+          <h2 className="meal-instruct">Instructions</h2>
+          <p
+            className="meal-instruction"
+            data-testid="instructions"
+          >
+            {strInstructions}
+
+          </p>
+          <iframe
+            src={ embedHTML }
+            title="instructions video"
+            allowFullScreen
+            data-testid="video"
+            width="400"
+            height="300"
+          />
+        </div>
+        <button
+          className="finish-btn"
+          data-testid="finish-recipe-btn"
+          disabled={ !isRecipeFinished }
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Finish Recipe
+        </button>
       </div>
-      <button
-        data-testid="finish-recipe-btn"
-        disabled={ !isRecipeFinished }
-      >
-        Finalizar Receita
-      </button>
     </div>
   );
 }

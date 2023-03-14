@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-in-progress {
+  background-color: #fcc436;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
