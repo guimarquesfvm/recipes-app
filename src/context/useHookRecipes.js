@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function useHookRecipes() {
   // array com todas as receitas
@@ -10,10 +11,14 @@ function useHookRecipes() {
   // controla o loding
   const [loading, setLoading] = useState(true);
   // page serve para constrolar em qual pagina esta
-  const history = window.location.pathname.slice(1);
-  const [page, setPage] = useState(history);
+  const history = useLocation().pathname.slice(1);
+  const [page, setPage] = useState('');
   // favoriteRecipes serve para contra os favoritos no localstorage
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
+  useEffect(() => {
+    setPage(history);
+  }, [history]);
 
   // botao para selecionar a categoria
   const toggleButton = ({ target }) => {

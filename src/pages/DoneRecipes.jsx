@@ -119,7 +119,7 @@ export default function DoneRecipes() {
           data-testid="filter-by-drink-btn"
           onClick={ () => setFilterClick('Drinks') }
         >
-          <img src={ drinksButton } alt="Meals Button" />
+          <img src={ drinksButton } alt="Drinks Button" />
           {/* Drinks */}
         </button>
         <button
@@ -127,7 +127,7 @@ export default function DoneRecipes() {
           data-testid="filter-by-all-btn"
           onClick={ () => setFilterClick('All') }
         >
-          <img src={ allButton } alt="Meals Button" />
+          <img src={ allButton } alt="All Button" />
           {/* All */}
         </button>
       </form>

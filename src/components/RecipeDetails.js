@@ -57,7 +57,7 @@ function RecipeDetails(props) {
     }
   }, [url, id]);
 
-  useEffect(() => console.log(recipe), [recipe]);
+  // useEffect(() => console.log(recipe), [recipe]);
   // useEffect(() => console.log(ingredients), [ingredients]);
   // useEffect(() => console.log(measurements), [measurements]);
   // useEffect(() => console.log(recomendations), [recomendations]);

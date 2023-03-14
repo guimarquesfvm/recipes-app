@@ -14,10 +14,12 @@ function StartRecipeButton({ recipeID, category }) {
     // }
     // testa se a recipe atual está no array de doneRecipes (localStorage)
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    console.log(inProgressRecipes);
     if (inProgressRecipes) {
-      const inProgressIdsArray = Object.keys(inProgressRecipes[category]);
+      const inProgressIdsArray = inProgressRecipes[category]
+        && Object.keys(inProgressRecipes[category]);
       const isInProgress = inProgressIdsArray
-        .some((el) => Number(el) === Number(recipeID));
+        ?.some((el) => Number(el) === Number(recipeID));
       if (isInProgress) setButtonText('Continue Recipe');
     }
   }, [recipeID, category]);

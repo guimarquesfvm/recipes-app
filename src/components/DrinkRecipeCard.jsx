@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 
 function DrinkRecipeCard({ recipe, ingredients, measurements }) {
-  useEffect(() => console.log(recipe), [recipe]);
-  useEffect(() => console.log(ingredients), [ingredients]);
-  useEffect(() => console.log(measurements), [measurements]);
+  // useEffect(() => console.log(recipe), [recipe]);
+  // useEffect(() => console.log(ingredients), [ingredients]);
+  // useEffect(() => console.log(measurements), [measurements]);
 
   const {
     strDrinkThumb,

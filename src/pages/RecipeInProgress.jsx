@@ -43,14 +43,10 @@ function RecipeInProgress(props) {
               ingredients={ ingredients }
               measurements={ measurements }
             />
-            <div className="icons">
-              <FavoriteRecipeButton recipe={ recipe } category="meal" />
-              <ShareRecipeButton
-                dataId="share-btn"
-                id={ id }
-                type="meal"
-              />
-            </div>
+            <FavoriteRecipeButton recipe={ recipe } category="meal" />
+            <ShareRecipeButton
+              dataId="share-btn"
+            />
           </>
         ) : (
           <>
@@ -60,14 +56,8 @@ function RecipeInProgress(props) {
               ingredients={ ingredients }
               measurements={ measurements }
             />
-            <div className="icons">
-              <FavoriteRecipeButton recipe={ recipe } category="drink" />
-              <ShareRecipeButton
-                dataId="share-btn"
-                id={ id }
-                type="drink"
-              />
-            </div>
+            <FavoriteRecipeButton recipe={ recipe } category="drink" />
+            <ShareRecipeButton dataId="share-btn" />
           </>
         )}
       </div>

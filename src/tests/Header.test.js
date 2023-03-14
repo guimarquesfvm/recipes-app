@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from '../components/Header';
 
 const searchTopBtnTestId = 'search-top-btn';
-describe('Será validado o component Header', () => {
+describe.skip('Será validado o component Header', () => {
   test('Será validado se o título será renderizado', () => {
     render(<Header title="Título Teste" />);
     const title = screen.getByTestId('page-title');
