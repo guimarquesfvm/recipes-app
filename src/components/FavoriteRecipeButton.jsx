@@ -50,6 +50,7 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
           }
           data-testid="favorite-btn"
           alt="favorite-heart"
+          width="35px"
         />
 
       )}
