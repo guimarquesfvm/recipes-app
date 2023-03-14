@@ -9,12 +9,12 @@
   border: 0;
 }
 
-#pL {
+.pL {
   text-align: center;
 }
 
 .card-done {
-  border: 0.517989px solid #b1b1b1;
+  border: 0.518px solid #b1b1b1;
   border-radius: 5px;
   display: flex;
   font-size: small;

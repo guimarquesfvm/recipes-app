@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import '../style/DrinkRecipeCardInProgress.css';
 
 function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const {
@@ -7,9 +9,9 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
     strDrink,
     strCategory,
     strInstructions,
-    strYoutube,
   } = recipe;
 
+  const history = useHistory();
   const [checkedList, setCheckedList] = useState(Array(ingredients.length).fill(false));
 
   useEffect(() => {
@@ -31,62 +33,67 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
     );
   }, [checkedList, recipe.idDrink]);
 
-  const [embedHTML, setEmbedHTML] = useState('');
-  useEffect(() => {
-    setEmbedHTML(String(strYoutube).replace('/watch?v=', '/embed/'));
-  }, [strYoutube]);
-
   const isRecipeFinished = checkedList.every(Boolean);
 
   return (
     <div>
-      <h3 data-testid="recipe-title">{strDrink}</h3>
-      <p data-testid="recipe-category">{strCategory}</p>
+      <h1 className="recipe-in-progress">Recipe in Progress</h1>
+      <div className="drink-recipe">
+        <h3 data-testid="recipe-title" className="drink-title">{strDrink}</h3>
+        <p data-testid="recipe-category">{strCategory}</p>
 
-      <img
-        src={ strDrinkThumb }
-        alt={ strDrink }
-        style={ { width: 200 } }
-        data-testid="recipe-photo"
-      />
-      <ul>
-        {
-          ingredients?.map((e, i) => (
-            <label
-              key={ i }
-              data-testid={ `${i}-ingredient-step` }
-              style={ { textDecoration: checkedList[i]
-                ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
-            >
-              <input
-                type="checkbox"
-                checked={ checkedList[i] }
-                onChange={ () => {
-                  const newList = [...checkedList];
-                  newList[i] = !newList[i];
-                  setCheckedList(newList);
-                } }
-              />
-              {`${e}  ${measurements[i] ? measurements[i] : ''}`}
-            </label>
-          ))
-        }
-      </ul>
-      <div>
-        <p data-testid="instructions">{strInstructions}</p>
-        <iframe
-          src={ embedHTML }
-          title="instructions video"
-          allowFullScreen
-          data-testid="video"
+        <img
+          className="drink-img"
+          src={ strDrinkThumb }
+          alt={ strDrink }
+          style={ { width: 200 } }
+          data-testid="recipe-photo"
         />
+        <h2 className="drink-instruct">Ingredients</h2>
+        <ul className="drink-list">
+          {
+            ingredients?.map((e, i) => (
+              <label
+                className="drink-label"
+                key={ i }
+                data-testid={ `${i}-ingredient-step` }
+                style={ { textDecoration: checkedList[i]
+                  ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
+              >
+                <input
+                  className="drink-checkbox"
+                  type="checkbox"
+                  checked={ checkedList[i] }
+                  onChange={ () => {
+                    const newList = [...checkedList];
+                    newList[i] = !newList[i];
+                    setCheckedList(newList);
+                  } }
+                />
+                {`${e}  ${measurements[i] ? measurements[i] : ''}`}
+              </label>
+            ))
+          }
+        </ul>
+        <div>
+          <h2 className="drink-instruct">Instructions</h2>
+          <p
+            className="drink-instruction"
+            data-testid="instructions"
+          >
+            {strInstructions}
+
+          </p>
+        </div>
+        <button
+          className="finish-btn"
+          data-testid="finish-recipe-btn"
+          disabled={ !isRecipeFinished }
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Finish Recipe
+        </button>
       </div>
-      <button
-        data-testid="finish-recipe-btn"
-        disabled={ !isRecipeFinished }
-      >
-        Finalizar Receita
-      </button>
     </div>
   );
 }

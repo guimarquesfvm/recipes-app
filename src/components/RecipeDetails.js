@@ -6,8 +6,8 @@ import DrinkRecipeCard from './DrinkRecipeCard';
 import recomendationsAPI from '../helpers/recomendationsAPI';
 import DrinkRecomendations from './DrinkRecomendations';
 import MealRecomendations from './MealRecomendations';
-import StartRecipeButton from './StartRecipeButton';
 import ShareRecipeButton from './ShareRecipeButton';
+import StartRecipeButton from './StartRecipeButton';
 import FavoriteRecipeButton from './FavoriteRecipeButton';
 import '../style/DetailsRecipe.css';
 
@@ -58,7 +58,7 @@ function RecipeDetails(props) {
     }
   }, [url, id]);
 
-  useEffect(() => console.log(recipe), [recipe]);
+  // useEffect(() => console.log(recipe), [recipe]);
   // useEffect(() => console.log(ingredients), [ingredients]);
   // useEffect(() => console.log(measurements), [measurements]);
   // useEffect(() => console.log(recomendations), [recomendations]);

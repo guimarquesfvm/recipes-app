@@ -90,16 +90,16 @@ export default function DoneRecipes() {
 
   const start = () => {
     if (doneRecipes === null) {
-      return <p id="pL">You have no completed recipes.</p>;
+      return <p className="pL">You have no completed recipes.</p>;
     }
     return doneRecipesMap();
   };
 
   const link = () => {
     if (linkCopied === true) {
-      return <p data-testid="link" id="pL">Link copied!</p>;
+      return <p data-testid="link" className="pL">Link copied!</p>;
     }
-    return <p data-testid="link" id="pL" />;
+    return <p data-testid="link" className="pL" />;
   };
 
   return (
@@ -119,7 +119,7 @@ export default function DoneRecipes() {
           data-testid="filter-by-drink-btn"
           onClick={ () => setFilterClick('Drinks') }
         >
-          <img src={ drinksButton } alt="Meals Button" />
+          <img src={ drinksButton } alt="Drinks Button" />
           {/* Drinks */}
         </button>
         <button
@@ -127,7 +127,7 @@ export default function DoneRecipes() {
           data-testid="filter-by-all-btn"
           onClick={ () => setFilterClick('All') }
         >
-          <img src={ allButton } alt="Meals Button" />
+          <img src={ allButton } alt="All Button" />
           {/* All */}
         </button>
       </form>

@@ -53,9 +53,10 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
             src={
               favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
             }
-            alt="favorite-heart"
+            alt=""
           />
         </button>
+
       )}
     </div>
   );

@@ -7,15 +7,17 @@ function StartRecipeButton({ recipeID, category }) {
 
   useEffect(() => {
     // testa se a recipe atual está no array de doneRecipes (localStorage)
-    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (doneRecipes) {
-      const isDone = doneRecipes?.some((el) => Number(el.id) === Number(recipeID));
-      if (isDone) setButtonText('');
-    }
+    // const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    // if (doneRecipes) {
+    //   const isDone = doneRecipes.some((el) => Number(el.id) === Number(recipeID));
+    //   if (isDone) setButtonText('');
+    // }
     // testa se a recipe atual está no array de doneRecipes (localStorage)
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    console.log(inProgressRecipes);
     if (inProgressRecipes) {
-      const inProgressIdsArray = Object.keys(inProgressRecipes[category]);
+      const inProgressIdsArray = inProgressRecipes[category]
+        && Object.keys(inProgressRecipes[category]);
       const isInProgress = inProgressIdsArray
         ?.some((el) => Number(el) === Number(recipeID));
       if (isInProgress) setButtonText('Continue Recipe');
