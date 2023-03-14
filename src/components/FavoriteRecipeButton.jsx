@@ -42,20 +42,16 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
     <div>
       { recipe
       && (
-        <button
+        <input
+          type="image"
           onClick={ handleFavorite }
           src={
             favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
           }
           data-testid="favorite-btn"
-        >
-          <img
-            src={
-              favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
-            }
-            alt="favorite-heart"
-          />
-        </button>
+          alt="favorite-heart"
+        />
+
       )}
     </div>
   );
