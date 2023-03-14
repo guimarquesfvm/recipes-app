@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import { searchApi } from '../helpers/mealsAPI';
+import '../style/SearchBar.css';
 
 export default function SearchBar() {
   const history = useHistory();
@@ -52,46 +53,51 @@ export default function SearchBar() {
   };
 
   return (
-    <form>
+    <form className="Search-Bar">
       <input
+        className="input-search"
         type="text"
         onChange={ (e) => setSearch(e.target.value) }
         data-testid="search-input"
       />
-      <label>
-        <input
-          type="radio"
-          name="search-radio"
-          data-testid="ingredient-search-radio"
-          onClick={ () => setSearchRadio('ingredient') }
-        />
-        Ingredient
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="search-radio"
-          data-testid="name-search-radio"
-          onClick={ () => setSearchRadio('name') }
-        />
-        Name
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="search-radio"
-          data-testid="first-letter-search-radio"
-          onClick={ () => setSearchRadio('first-letter') }
-        />
-        First Letter
-      </label>
+      <div className="div-search">
+        <label>
+          <input
+            type="radio"
+            name="search-radio"
+            data-testid="ingredient-search-radio"
+            onClick={ () => setSearchRadio('ingredient') }
+          />
+          Ingredient
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="search-radio"
+            data-testid="name-search-radio"
+            onClick={ () => setSearchRadio('name') }
+          />
+          Name
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="search-radio"
+            data-testid="first-letter-search-radio"
+            onClick={ () => setSearchRadio('first-letter') }
+          />
+          First Letter
+        </label>
+      </div>
       <button
+        className="search-button"
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => onClickButton() }
       >
-        Search
+        <strong>Search</strong>
       </button>
+
     </form>
   );
 }
