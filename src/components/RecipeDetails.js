@@ -94,7 +94,7 @@ function RecipeDetails(props) {
             />
             <h2 className="tag-h2"><b>Recomendations</b></h2>
             <MealRecomendations recomendations={ recomendations } />
-            {/* <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" /> */}
+            <StartRecipeButton recipeID={ recipe.idDrink } category="drinks" />
           </>
         )}
       </div>
