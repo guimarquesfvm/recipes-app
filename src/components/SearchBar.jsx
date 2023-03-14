@@ -33,9 +33,9 @@ export default function SearchBar() {
     const apiEndpoint = searchTypeToApiEndpoint[searchRadio][window
       .location.pathname.slice(1)];
     const link = apiEndpoint + search;
-    console.log(link);
+    // console.log(link);
     const api = await searchApi(link);
-    console.log(api);
+    // console.log(api);
 
     if (api.meals && api.meals.length > 0) {
       if (api.meals.length === 1) {

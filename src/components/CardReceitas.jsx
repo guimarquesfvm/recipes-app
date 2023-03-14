@@ -79,9 +79,11 @@ export default function CardReceitas() {
   if (!getStorage) {
     localStorage.setItem('user', JSON.stringify({ email: '' }));
   }
-
-  const pageName = page === 'meals' ? 'Meal' : 'Drink';
-  console.log(pageName);
+  if (loading) {
+    return <Loading />;
+  }
+  const pageName = (page === 'meals' && 'Meal') || (page === 'drinks' && 'Drink');
+  // console.log(page, api[0]);
   return (
 
     <div>
@@ -107,7 +109,7 @@ export default function CardReceitas() {
         ))}
 
       </label>
-      {loading ? <Loading /> : api.map((receita, index) => (index < limiter2
+      {loading && api.length > 0 ? <Loading /> : api.map((receita, index) => (index < limiter2
       && (
         <div
           key={ receita[`id${pageName}`] }

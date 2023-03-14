@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 
 function Login(props) {
@@ -8,7 +9,7 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validation, setValidation] = useState(true);
-
+  const { pathname } = useLocation();
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const SIX = 6;
@@ -18,7 +19,7 @@ function Login(props) {
   const handleSubmit = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
     history.push('/meals');
-    setPage(window.location.pathname.slice(1));
+    setPage(pathname.slice(1));
   };
 
   return (

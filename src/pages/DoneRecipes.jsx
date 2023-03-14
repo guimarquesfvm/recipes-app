@@ -27,7 +27,7 @@ export default function DoneRecipes() {
     if (filterClick === 'Meals') {
       return doneRecipes.filter((element) => element.type === 'meal');
     } if (filterClick === 'Drinks') {
-      console.log('to nos drinks');
+      // console.log('to nos drinks');
       return doneRecipes.filter((element) => element.type === 'drink');
     }
     return doneRecipes;
