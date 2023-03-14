@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const {
@@ -7,9 +8,9 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
     strDrink,
     strCategory,
     strInstructions,
-    strYoutube,
   } = recipe;
 
+  const history = useHistory();
   const [checkedList, setCheckedList] = useState(Array(ingredients.length).fill(false));
 
   useEffect(() => {
@@ -31,34 +32,32 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
     );
   }, [checkedList, recipe.idDrink]);
 
-  const [embedHTML, setEmbedHTML] = useState('');
-  useEffect(() => {
-    setEmbedHTML(String(strYoutube).replace('/watch?v=', '/embed/'));
-  }, [strYoutube]);
-
   const isRecipeFinished = checkedList.every(Boolean);
 
   return (
-    <div>
-      <h3 data-testid="recipe-title">{strDrink}</h3>
+    <div className="drink-recipe">
+      <h3 data-testid="recipe-title" className="drink-name">{strDrink}</h3>
       <p data-testid="recipe-category">{strCategory}</p>
 
       <img
+        className="drink-img"
         src={ strDrinkThumb }
         alt={ strDrink }
         style={ { width: 200 } }
         data-testid="recipe-photo"
       />
-      <ul>
+      <ul className="drink-list">
         {
           ingredients?.map((e, i) => (
             <label
+              className="drink-label"
               key={ i }
               data-testid={ `${i}-ingredient-step` }
               style={ { textDecoration: checkedList[i]
                 ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
             >
               <input
+                className="drink-checkbox"
                 type="checkbox"
                 checked={ checkedList[i] }
                 onChange={ () => {
@@ -74,18 +73,14 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
       </ul>
       <div>
         <p data-testid="instructions">{strInstructions}</p>
-        <iframe
-          src={ embedHTML }
-          title="instructions video"
-          allowFullScreen
-          data-testid="video"
-        />
       </div>
       <button
+        className="finish-btn"
         data-testid="finish-recipe-btn"
         disabled={ !isRecipeFinished }
+        onClick={ () => history.push('/done-recipes') }
       >
-        Finalizar Receita
+        Finish Recipe
       </button>
     </div>
   );

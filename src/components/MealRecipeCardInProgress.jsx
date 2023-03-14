@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const {
@@ -10,6 +11,8 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
     strYoutube,
   } = recipe;
 
+  const history = useHistory();
+  const [isRecipeFinished, setIsRecipeFinished] = useState(false);
   const [embedHTML, setEmbedHTML] = useState('');
   useEffect(() => {
     setEmbedHTML(String(strYoutube).replace('/watch?v=', '/embed/'));
@@ -34,29 +37,33 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
       JSON.stringify({ ...inProgressRecipes, meals: mealInProgress }),
     );
   }, [checkedList, recipe.idMeal]);
-
-  const isRecipeFinished = checkedList.every(Boolean);
+  useEffect(() => {
+    setIsRecipeFinished(checkedList.every((item) => item === true));
+  }, [checkedList]);
 
   return (
-    <div>
-      <h3 data-testid="recipe-title">{strMeal}</h3>
+    <div className="meal-recipe">
+      <h3 data-testid="recipe-title" className="meal-name">{strMeal}</h3>
       <p data-testid="recipe-category">{strCategory}</p>
       <img
+        className="meal-img"
         src={ strMealThumb }
         alt={ strMeal }
         style={ { width: 200 } }
         data-testid="recipe-photo"
       />
-      <ul>
+      <ul className="meal-list">
         {
           ingredients?.map((e, i) => (
             <label
+              className="meal-label"
               key={ i }
               data-testid={ `${i}-ingredient-step` }
               style={ { textDecoration: checkedList[i]
                 ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
             >
               <input
+                className="meal-checkbox"
                 type="checkbox"
                 checked={ checkedList[i] }
                 onChange={ () => {
@@ -80,10 +87,12 @@ function MealRecipeCardInProgress({ recipe, ingredients, measurements }) {
         />
       </div>
       <button
+        className="finish-btn"
         data-testid="finish-recipe-btn"
         disabled={ !isRecipeFinished }
+        onClick={ () => history.push('/done-recipes') }
       >
-        Finalizar Receita
+        Finish Recipe
       </button>
     </div>
   );
