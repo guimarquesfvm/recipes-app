@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
+import '../style/Header.css';
 
 function Header(props) {
   const [showBar, setShowBar] = useState(false);
@@ -13,42 +14,46 @@ function Header(props) {
   // Estado usado para esconder a barra
   const history = useHistory();
   return (
-    <header>
-      <h1>Recipes App</h1>
-      <div>
-        {ValidateHeader ? ''
-          : (
-            <input
-              type="image"
-              data-testid="search-top-btn"
-              src={ searchIcon }
-              alt="Search Icon"
-              onClick={ (e) => {
-                e.preventDefault();
-                setShowBar(!showBar);
-              } }
-            />
-          )}
+    <header className="header">
+      <div className="header-container">
+        <h1 className="header-recipe-app">RECIPES</h1>
+        <h1 className="header-recipe-app2">app</h1>
+        <div className="header-icons">
+          {ValidateHeader ? ''
+            : (
+              <input
+                className="header-input"
+                type="image"
+                data-testid="search-top-btn"
+                src={ searchIcon }
+                alt="Search Icon"
+                onClick={ (e) => {
+                  e.preventDefault();
+                  setShowBar(!showBar);
+                } }
+              />
+            )}
 
-        <input
-          type="image"
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="Profile Icon"
-          onClick={ (e) => {
-            e.preventDefault();
-            history.push('/profile');
-          } }
-        />
+          <input
+            className="header-profile"
+            type="image"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="Profile Icon"
+            onClick={ (e) => {
+              e.preventDefault();
+              history.push('/profile');
+            } }
+          />
 
-      </div>
-      <div>
-        <h3 data-testid="page-title">{ title }</h3>
+        </div>
+        <div />
       </div>
       {
         showBar
           ? <SearchBar /> : null
       }
+      <h3 className="header-page-title" data-testid="page-title">{ title }</h3>
     </header>
   );
 }
