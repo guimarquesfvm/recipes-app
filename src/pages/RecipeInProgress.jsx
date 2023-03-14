@@ -5,6 +5,7 @@ import MealRecipeCardInProgress from '../components/MealRecipeCardInProgress';
 import DrinkRecipeCardInProgress from '../components/DrinkRecipeCardInProgress';
 import ShareRecipeButton from '../components/ShareRecipeButton';
 import FavoriteRecipeButton from '../components/FavoriteRecipeButton';
+import '../style/RecipeInProgress.css';
 
 function RecipeInProgress(props) {
   const { match: { url, params: { id } } } = props;
@@ -33,7 +34,6 @@ function RecipeInProgress(props) {
 
   return (
     <div>
-      <h1 className="recipe-in-progress">Recipe in Progress</h1>
       <div className="recipe-container">
         {url.includes('meals') ? (
           <>
@@ -43,12 +43,14 @@ function RecipeInProgress(props) {
               ingredients={ ingredients }
               measurements={ measurements }
             />
-            <FavoriteRecipeButton recipe={ recipe } category="meal" />
-            <ShareRecipeButton
-              dataId="share-btn"
-              id={ id }
-              type="meal"
-            />
+            <div className="icons">
+              <FavoriteRecipeButton recipe={ recipe } category="meal" />
+              <ShareRecipeButton
+                dataId="share-btn"
+                id={ id }
+                type="meal"
+              />
+            </div>
           </>
         ) : (
           <>
@@ -58,12 +60,14 @@ function RecipeInProgress(props) {
               ingredients={ ingredients }
               measurements={ measurements }
             />
-            <FavoriteRecipeButton recipe={ recipe } category="drink" />
-            <ShareRecipeButton
-              dataId="share-btn"
-              id={ id }
-              type="drink"
-            />
+            <div className="icons">
+              <FavoriteRecipeButton recipe={ recipe } category="drink" />
+              <ShareRecipeButton
+                dataId="share-btn"
+                id={ id }
+                type="drink"
+              />
+            </div>
           </>
         )}
       </div>

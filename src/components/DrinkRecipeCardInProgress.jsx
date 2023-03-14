@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../style/DrinkRecipeCardInProgress.css';
 
 function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const {
@@ -35,53 +36,64 @@ function DrinkRecipeCardInProgress({ recipe, ingredients, measurements }) {
   const isRecipeFinished = checkedList.every(Boolean);
 
   return (
-    <div className="drink-recipe">
-      <h3 data-testid="recipe-title" className="drink-name">{strDrink}</h3>
-      <p data-testid="recipe-category">{strCategory}</p>
+    <div>
+      <h1 className="recipe-in-progress">Recipe in Progress</h1>
+      <div className="drink-recipe">
+        <h3 data-testid="recipe-title" className="drink-title">{strDrink}</h3>
+        <p data-testid="recipe-category">{strCategory}</p>
 
-      <img
-        className="drink-img"
-        src={ strDrinkThumb }
-        alt={ strDrink }
-        style={ { width: 200 } }
-        data-testid="recipe-photo"
-      />
-      <ul className="drink-list">
-        {
-          ingredients?.map((e, i) => (
-            <label
-              className="drink-label"
-              key={ i }
-              data-testid={ `${i}-ingredient-step` }
-              style={ { textDecoration: checkedList[i]
-                ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
-            >
-              <input
-                className="drink-checkbox"
-                type="checkbox"
-                checked={ checkedList[i] }
-                onChange={ () => {
-                  const newList = [...checkedList];
-                  newList[i] = !newList[i];
-                  setCheckedList(newList);
-                } }
-              />
-              {`${e}  ${measurements[i] ? measurements[i] : ''}`}
-            </label>
-          ))
-        }
-      </ul>
-      <div>
-        <p data-testid="instructions">{strInstructions}</p>
+        <img
+          className="drink-img"
+          src={ strDrinkThumb }
+          alt={ strDrink }
+          style={ { width: 200 } }
+          data-testid="recipe-photo"
+        />
+        <h2 className="drink-instruct">Ingredients</h2>
+        <ul className="drink-list">
+          {
+            ingredients?.map((e, i) => (
+              <label
+                className="drink-label"
+                key={ i }
+                data-testid={ `${i}-ingredient-step` }
+                style={ { textDecoration: checkedList[i]
+                  ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
+              >
+                <input
+                  className="drink-checkbox"
+                  type="checkbox"
+                  checked={ checkedList[i] }
+                  onChange={ () => {
+                    const newList = [...checkedList];
+                    newList[i] = !newList[i];
+                    setCheckedList(newList);
+                  } }
+                />
+                {`${e}  ${measurements[i] ? measurements[i] : ''}`}
+              </label>
+            ))
+          }
+        </ul>
+        <div>
+          <h2 className="drink-instruct">Instructions</h2>
+          <p
+            className="drink-instruction"
+            data-testid="instructions"
+          >
+            {strInstructions}
+
+          </p>
+        </div>
+        <button
+          className="finish-btn"
+          data-testid="finish-recipe-btn"
+          disabled={ !isRecipeFinished }
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Finish Recipe
+        </button>
       </div>
-      <button
-        className="finish-btn"
-        data-testid="finish-recipe-btn"
-        disabled={ !isRecipeFinished }
-        onClick={ () => history.push('/done-recipes') }
-      >
-        Finish Recipe
-      </button>
     </div>
   );
 }
