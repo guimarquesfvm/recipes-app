@@ -1,11 +1,13 @@
-.img-profile{
-  border: 5px solid rgb(0, 0, 0);
+.img-profile {
+  border: 5px solid black;
   border-radius: 100%;
+  filter: invert(92%) sepia(85%) saturate(6061%)
+    hue-rotate(324deg) brightness(100%) contrast(98%);
   margin: auto;
   width: 70px;
-  filter: invert(92%) sepia(85%) saturate(6061%) hue-rotate(324deg) brightness(100%) contrast(98%);
 }
-.profile-content{
+
+.profile-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,8 +15,8 @@
 }
 
 h2 {
-  text-align: center;
   margin: 20px;
+  text-align: center;
 }
 
 .button-content {
@@ -24,27 +26,27 @@ h2 {
 }
 
 .button-content button {
-  
-  flex-direction: column;
-  width: 75%;
-  margin: auto; 
-  margin-top: 20px;
-  padding: 5px;
-  font-size: x-large;
+  background-color: white;
   border: none;
   border-bottom: 2px solid rgba(128, 128, 128, 0.363);
-  background-color: white;
+  flex-direction: column;
+  font-size: x-large;
+  margin: auto;
+  margin-top: 20px;
+  padding: 5px;
   padding-bottom: 20px;
- 
+  width: 75%;
 }
+
 .icons-profile {
-  width: 45px;
-  font-size: large;
   border: 2px solid black;
   border-radius: 100%;
-  margin-right: 20px;
+  color: #fcc436;
+  filter: invert(92%) sepia(85%) saturate(6061%)
+    hue-rotate(324deg) brightness(100%) contrast(98%);
+  font-size: large;
   margin-left: 10px;
+  margin-right: 20px;
   padding: 5px;
-  color: #FCC436;
-  filter: invert(92%) sepia(85%) saturate(6061%) hue-rotate(324deg) brightness(100%) contrast(98%);
+  width: 45px;
 }
