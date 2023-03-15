@@ -6,7 +6,7 @@ export const mealsAPI = async (page) => {
   // console.log(URL);
   const response = await fetch(`https://www.${URL}.com/api/json/v1/1/search.php?s=`);
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data[Object.keys(data)[0]];
 };
 // endPoint do filtro
