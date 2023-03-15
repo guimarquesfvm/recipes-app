@@ -359,7 +359,7 @@ describe('end to end do projeto', () => {
     //   },
     // };
     // window.localStorage.setItem('inProgressRecipes', JSON.stringify(json));
-    window.localStorage.removeItem('doneRecipes');
+    // window.localStorage.removeItem('doneRecipes');
     jest.spyOn(global, 'fetch').mockImplementation(fetch);
 
     renderWithRouter(<RecipesProvider><App /></RecipesProvider>);
@@ -373,6 +373,7 @@ describe('end to end do projeto', () => {
     userEvent.type(inputSenha, 'testando');
     userEvent.click(btnEntrar);
     await waitForElementToBeRemoved(() => screen.getByText('Loading'));
+
     expect(await screen.findByText(/Recipes/i)).toBeInTheDocument();
     expect(screen.getByText('Meals')).toBeInTheDocument();
     const corba = await screen.findByRole('img', { name: /corba/i });
