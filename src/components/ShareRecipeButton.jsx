@@ -38,6 +38,7 @@ function ShareRecipeButton({ dataId, type, id }) {
             onClick={ handleCopy2 }
             src={ share }
             alt="Share button"
+            width="35px"
           />
         )
         : (
@@ -48,6 +49,7 @@ function ShareRecipeButton({ dataId, type, id }) {
             onClick={ handleCopy }
             src={ share }
             alt="Share button"
+            width="35px"
           />
         )}
 

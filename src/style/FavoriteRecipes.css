@@ -1,0 +1,47 @@
+.filter-favorite {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.filter-favorite button {
+  background-color: white;
+  border: 0;
+}
+
+.card-favorite {
+  align-items: center;
+  border: 0.518px solid #b1b1b1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.card-favorite img {
+  border-radius: 5px;
+  width: 170px;
+}
+
+.content-card-favorites {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.name-and-category-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin: 10px;
+}
+
+.tags-button {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
