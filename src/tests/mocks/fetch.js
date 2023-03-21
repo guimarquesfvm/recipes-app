@@ -45,6 +45,7 @@ const function1 = (url) => {
   if (url === 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Japanese') { return Promise.resolve(japaneseMeals); }
 
   if (url === 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Italian') { return Promise.resolve(italianMeals); }
+  return 'ok';
 };
 
 const function2 = (url) => {
@@ -73,13 +74,13 @@ const function2 = (url) => {
   if (url === 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=') { return Promise.resolve(drinks); }
 
   if (url === 'https://www.themealdb.com/api/json/v1/1/search.php?s=') { return Promise.resolve(meals); }
+  return 'ok';
 };
 
 const fetch = (url) => Promise.resolve({
   status: 200,
   ok: true,
   json: () => {
-    function1(url);
     if (
       url === 'https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata'
       || url === 'https://www.themealdb.com/api/json/v1/1/random.php'
@@ -100,10 +101,15 @@ const fetch = (url) => Promise.resolve({
     if (url === 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef') { return Promise.resolve(beefMeals); }
 
     if (url === 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast') { return Promise.resolve(breakfastMeals); }
-
-    function2(url);
-
-    return Promise.reject(new Error('Invalid url'));
+    const func1 = function1(url);
+    if (func1 === 'ok') {
+      const func2 = function2(url);
+      if (func2 === 'ok') {
+        return Promise.reject(new Error('Invalid url'));
+      }
+      return func2;
+    }
+    return func1;
   },
 });
 

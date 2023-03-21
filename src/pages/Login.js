@@ -41,7 +41,7 @@ function Login(props) {
       </label>
 
       <label htmlFor="password">
-        Pasword:
+        Password:
         <br />
         <input
           id="password"

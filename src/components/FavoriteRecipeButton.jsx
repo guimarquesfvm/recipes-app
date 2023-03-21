@@ -48,14 +48,9 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
             favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
           }
           data-testid="favorite-btn"
-        >
-          <img
-            src={
-              favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
-            }
-            alt=""
-          />
-        </button>
+          alt="favorite-heart"
+          width="35px"
+        />
 
       )}
     </div>

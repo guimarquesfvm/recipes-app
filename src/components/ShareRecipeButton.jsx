@@ -36,9 +36,9 @@ function ShareRecipeButton({ dataId, type, id }) {
             data-testid="share-btn"
             onClick={ handleCopy2 }
             src={ share }
-          >
-            <img src={ share } alt="share" />
-          </button>
+            alt="Share button"
+            width="35px"
+          />
         )
         : (
           <button
@@ -46,9 +46,9 @@ function ShareRecipeButton({ dataId, type, id }) {
             data-testid={ dataId }
             onClick={ handleCopy }
             src={ share }
-          >
-            <img src={ share } alt="share" />
-          </button>
+            alt="Share button"
+            width="35px"
+          />
         )}
 
       <span>{alert}</span>
