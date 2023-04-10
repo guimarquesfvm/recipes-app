@@ -15,7 +15,7 @@
 
 .share-and-favorite-container {
   color: white;
-  left: 85%;
+  left: 90%;
   position: absolute;
   z-index: 15;
 }
@@ -26,6 +26,20 @@
   border-radius: 50px;
   margin-top: 5px;
   padding: 5px;
+}
+
+.home-container {
+  position: absolute;
+  right: 88%;
+  top: 1%;
+  z-index: 15;
+}
+
+.home-logo-button {
+  background: rgba(252, 196, 54, 1);
+  border-radius: 10px;
+  padding: 5px;
+  width: 40px;
 }
 
 .apresentation-container {

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import recipeDetailsAPI from '../helpers/recipeDetailsAPI';
 import MealRecipeCard from './MealRecipeCard';
 import DrinkRecipeCard from './DrinkRecipeCard';
@@ -9,6 +10,7 @@ import MealRecomendations from './MealRecomendations';
 import ShareRecipeButton from './ShareRecipeButton';
 import StartRecipeButton from './StartRecipeButton';
 import FavoriteRecipeButton from './FavoriteRecipeButton';
+import logoApp from '../images/pngwing.com.png';
 import '../style/DetailsRecipe.css';
 
 function RecipeDetails(props) {
@@ -66,6 +68,9 @@ function RecipeDetails(props) {
   return (
     <div>
       <div>
+        <Link to="/meals" className="home-container">
+          <img src={ logoApp } alt="Voltar à tela inicial" className="home-logo-button" />
+        </Link>
         {url.includes('meals') ? (
           <>
             <div className="share-and-favorite-container">

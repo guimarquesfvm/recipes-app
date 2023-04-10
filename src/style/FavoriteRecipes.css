@@ -45,3 +45,12 @@
   justify-content: space-around;
   margin: 10px;
 }
+
+.tags-button button {
+  background-color: white;
+}
+
+.tags-button img {
+  width: 30px;
+}
+

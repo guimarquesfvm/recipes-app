@@ -22,7 +22,7 @@ export default function CardReceitas() {
   return (
 
     <div>
-      <label>
+      <label className="category-container">
         <button
           type="button"
           onClick={ toggleButtonAll }
@@ -42,33 +42,34 @@ export default function CardReceitas() {
 
           </button>
         ))}
-
       </label>
-      {api.map((receita, index) => (index < limiter2
-      && (
-        <div
-          key={ receita[`id${pageName}`] }
-          data-testid={ `${index}-recipe-card` }
-        >
-          <Link
-            to={ `/${page}/${receita[`id${pageName}`]}` }
+      <div className="recipes-cards-container">
+        {api.map((receita, index) => (index < limiter2
+        && (
+          <div
+            key={ receita[`id${pageName}`] }
+            data-testid={ `${index}-recipe-card` }
           >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ receita[`str${pageName}Thumb`] }
-              alt={ receita[`str${pageName}`] }
-              width="300px"
-            />
-            <span
-              data-testid={ `${index}-card-name` }
+            <Link
+              to={ `/${page}/${receita[`id${pageName}`]}` }
+              className="drink-card"
             >
-              {receita[`str${pageName}`]}
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ receita[`str${pageName}Thumb`] }
+                alt={ receita[`str${pageName}`] }
+              />
+              <span
+                data-testid={ `${index}-card-name` }
+              >
+                {receita[`str${pageName}`]}
 
-            </span>
-          </Link>
-        </div>
-      )
-      ))}
+              </span>
+            </Link>
+          </div>
+        )
+        ))}
+      </div>
     </div>
 
   );

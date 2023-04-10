@@ -44,13 +44,17 @@ function FavoriteRecipeButton({ recipe, category, obj }) {
       && (
         <button
           onClick={ handleFavorite }
-          src={
-            favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
-          }
           data-testid="favorite-btn"
           alt="favorite-heart"
           width="35px"
-        />
+        >
+          <img
+            src={
+              favoriteRecipes?.some((el) => el.id === toSave.id) ? blackHeart : whiteHeart
+            }
+            alt="favoritar/desfavoritar receita"
+          />
+        </button>
 
       )}
     </div>

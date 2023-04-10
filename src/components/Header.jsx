@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
+import logoApp from '../images/Group 4.png';
 import '../style/Header.css';
 
 function Header(props) {
@@ -16,6 +17,9 @@ function Header(props) {
   return (
     <header className="header">
       <div className="header-container">
+        <button onClick={ () => history.push('/meals') }>
+          <img src={ logoApp } alt="voltar à tela principal" />
+        </button>
         <h1 className="header-recipe-app">RECIPES</h1>
         <h1 className="header-recipe-app2">app</h1>
         <div className="header-icons">

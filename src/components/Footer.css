@@ -1,9 +1,16 @@
 .footer {
   background-color: white;
   bottom: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   left: 0;
   padding: 10px;
   position: fixed;
-  text-align: center;
   width: 100%;
+}
+
+.footer img {
+  border-radius: 5px;
+  padding: 10px;
 }

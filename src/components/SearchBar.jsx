@@ -49,7 +49,7 @@ export default function SearchBar() {
       }
       setApi(api.drinks.slice(0, doze));
     }
-    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    // global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   return (

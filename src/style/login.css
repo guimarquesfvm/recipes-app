@@ -31,17 +31,12 @@
 
 .login-container {
   align-items: center;
-  background-color: rgba(65, 25, 127, 1);
-  color: white;
+  color: rgba(65, 25, 127, 1);
   display: flex;
   flex-direction: column;
   font-family: system-ui , -apple-system , Open Sans , Helvetica Neue , sans-serif;
   font-weight: 700;
   gap: 20px;
   height: 100vh;
-  justify-items: center;
-  margin: auto;
-  padding: 20px;
-  padding-top: 50%;
-  width: 100%;
+  justify-content: center;
 }

@@ -1,0 +1,33 @@
+button {
+  background-color: #fcdc36;
+  border: none;
+  color: #41197f;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.category-container {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 10px;
+}
+
+.recipes-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.recipes-cards-container img {
+  width: 180px;
+}
+
+.drink-card {
+  color: #41197f;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
